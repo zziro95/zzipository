@@ -1,4 +1,4 @@
-# :fox: zzipository :fox:
+# :fox_face zzipository :fox_face
 ---
 `iOS` 개발 공부를 하면서 이해한만큼 정리하기위한 저장소 입니다. 
 
