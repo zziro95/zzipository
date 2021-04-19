@@ -55,6 +55,7 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
 <br>
 <img src="https://github.com/zziro95/zzipository/blob/main/images/lsl.png" width="70%" height="70%" title="lsl" alt="lslImg"></img> <br>
 <img src="https://github.com/zziro95/zzipository/blob/main/images/lsal.png" width="70%" height="70%" title="lsal" alt="lsalImg"></img> <br>
+
 위의 사진은 같은 폴더에 `ls-l`, `ls-al` 명령어를 실행한 결과이다.  <br>
 자세한 정보들을 출력해주는 공통점이 있고, 숨김 파일을 포함하여 출력해주느냐의 차이가 있다.  <br>
 이제 사진의 왼쪽부터 각각의 내용들이 의미하는게 뭔지 알아보자.  <br>
