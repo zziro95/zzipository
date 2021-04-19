@@ -41,6 +41,59 @@ wwdc swift퍼포먼스도 제데로 봐보자!
 
 
 
+글쓰면서 봐야할것 아직안본거임
+
+https://medium.com/macoclock/reference-vs-value-types-in-swift-c1ece75b8a55
 
 
 
+
+
+타이븡ㄹ 실체화 한것을 인스턴스라고 부른다. 클래스의 인스턴스를 객체라고 한다.
+
+객체글 관련  https://docs.swift.org/swift-book/LanguageGuide/ClassesAndStructures.html
+
+![image-20210418011426460](/Users/jinhochoi/Library/Application Support/typora-user-images/image-20210418011426460.png)
+
+밤 - Swift 문서에 보니까 객체라는 표현을 사용하는 대신에 더 일반화된 표현인 Instance를 사용한다고 나와있네요. 아마도 Instance가 우리말로 개체인거 같습니다..
+
+
+
+Bam - 아까 struct, class 관련해서 다시 해봤는데요. struct의 프로퍼티가 struct이고, private(set)이면 스크린샷처럼 에러가 발생합니다.  반면에 프로퍼티가 class이면 private(set)이라도 메서드 접근이 가능합니다.
+
+![image-20210418011851142](/Users/jinhochoi/Library/Application Support/typora-user-images/image-20210418011851142.png)
+
+ㅎㅎ 맞아요~ class는 참조타입이니까 
+
+
+
+Jake - class와 struct의 차이에 대해서 좀 더 자세하게 알고싶으면 보는 것을 추천드려요!! 코드리뷰어 분들이 추천해줬어요~~~
+
+https://developer.apple.com/videos/play/wwdc2016/416/
+
+야곰 - ㅎㅎ 저거 꽤 어려워요 20%만 이해해도 좋아요
+
+다 이해하면 더 좋지만 다 못해도 괜찮아요
+
+현업 주니어들도 반이상은 저거 이해하기 어려울거예요
+
+
+
+상어블로그 https://shark-sea.kr/m/entry/Swift-%EA%B5%AC%EC%A1%B0%EC%B2%B4%EC%99%80-%ED%81%B4%EB%9E%98%EC%8A%A4-%EC%B0%A8%EC%9D%B4-struct-vs-class
+
+공식문서 https://developer.apple.com/documentation/swift/choosing_between_structures_and_classes
+
+
+
+클래스 공부하고 클래스의 상속 클라썸강의 #272보기
+
+
+
+
+
+스위프트 기본 타입으로는 Int String Struct Class 등이 있다 . false
+
+- Int, String은 기본타입이 맞는데 Struct Class는 객체를 만드를 작업이기때문에 기본타입이 아니라고 알고있다.
+- Int, String은 이미 주어진 타입
+- Struct Class는 타입을 정의하기 위한 방식이다.
+- 
