@@ -5,22 +5,23 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
 
 ***
 ### 명령어
- `~` = 사용자의 홈 디렉토리 < br>
- `/` = `root` 최상위 디렉토리 < br>
-`pwd` = `Print Working Directory` 현재 디렉토리 경로 출력 < br>
-`cd` = `changeDirectory` 이동 < br>
-    `cd` 또는 `cd~` 홈 디렉토리로 이동 < br>
-    `cd /` 최상위 루트 디렉토리(/)로 이동 < br>
-    `cd ..` 한단계 상위 디렉토리로 이동 < br>
-    `cd -` 바로전에 위치했던 디렉토리로 이동 < br>
-`mkdir` = `makeDirectory` 디렉토리 생성 < br>
-`ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인 < br>
+ - `~` = 사용자의 홈 디렉토리
+ - `/` = `root` 최상위 디렉토리
+ - `pwd` = `Print Working Directory` 현재 디렉토리 경로 출력
+ - `cd` = `changeDirectory` 이동
+    - `cd` 또는 `cd~` 홈 디렉토리로 이동 
+    - `cd /` 최상위 루트 디렉토리(/)로 이동
+    - `cd ..` 한단계 상위 디렉토리로 이동
+    - `cd -` 바로전에 위치했던 디렉토리로 이동
+ - `mkdir` = `makeDirectory` 디렉토리 생성
+ - `ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인
 
 ***
 ### ls 명령어를 보기전에..
 `ls` 명령어에 대해 공부를 하다보니 `하드링크`, `심볼릭링크`라는 개념을 마주하게 되었고, 그 과정에서 `inode`라는게 무엇인지 알아봐야했다. < br>
 이것들에 대해 살펴본후 `ls` 명령어에 대해 조금 더 알아보자. < br>
 
+***
 ### inode와 Hard Link, Symbolic Link
 `inode`란 무엇인가???
 - 리눅스 파일 시스템에서 사용되는 자료 구조이다.
@@ -42,14 +43,15 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
 나름의 정리를 해보자면 `하드 링크`는 파일이 아니라 파일 이름과 `inode`와의 연결 관계이고 원본 파일과 동일한 `inode`를 가지고, 
 `심볼릭 링크`는  윈도우의 바로 가기(단축아이콘)과 비슷한 개념으로 다른 파일이나 디렉토리를 가리키는 파일이라고 이해해 보았다.
 
+***
 ### ls 명령어
-`ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인 < br>
-    `la -a` `(all)` 숨겨진 파일, 디렉토리까지 모두 확인 < br>
-    `ls -l` 리스트의 자세한 정보를 출력 < br>
-    `ls -al` 숨김 파일을 포함하여 자세한 정보를 출력 < br>
-    `ls -i` inode 번호 출력 < br>
-    `ls -t` 마지막 수정 시간 기준으로 출력 < br>
-    `ls -S` 사이즈 순서로 출력 < br>
+- `ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인
+    - `la -a` `(all)` 숨겨진 파일, 디렉토리까지 모두 확인
+    - `ls -l` 리스트의 자세한 정보를 출력
+    - `ls -al` 숨김 파일을 포함하여 자세한 정보를 출력
+    -  `ls -i` inode 번호 출력
+    - `ls -t` 마지막 수정 시간 기준으로 출력
+    -  `ls -S` 사이즈 순서로 출력
 <img src="https://github.com/zziro95/zzipository/blob/main/images/lsl.png" width="70%" height="70%" title="lsl" alt="lslImg"></img> < br>
 <img src="https://github.com/zziro95/zzipository/blob/main/images/lsal.png" width="70%" height="70%" title="lsal" alt="lsalImg"></img> < br>
 위의 사진은 같은 폴더에 `ls-l`, `ls-al` 명령어를 실행한 결과이다.  <br>
