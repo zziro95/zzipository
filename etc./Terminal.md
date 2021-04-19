@@ -32,7 +32,7 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
 - inode는 데이터의 우편번호 역할을 한다고 볼 수 있다.?!
 - **파일의 Data block이 디스크 상의어느 주소에 위치하고 있는가와 같은 파일에 대한 중요한 정보를 갖고 있다.**
 
-<img src="https://github.com/zziro95/zzipository/blob/main/images/inode.png" width="70%" height="70%" title="inode" alt="inodeImg"></img> < br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/inode.png" width="70%" height="70%" title="inode" alt="inodeImg"></img> <br>
 원본파일로 `하드 링크`를 만들면, 하드 링크는 원본 파일과 동일한 inode를 직접 가리킨다. ~~(그래서 원본 파일이 사라지더라도 데이터만 살아 있다면 원본 파일에 접근이 가능하다고 한다..)~~ <br>
 그러나 `심볼릭 링크`(소프트링크라고도 불린다)의 경우는 만들게 되면 또 다른 inode를 생성하고 이를 바라본다. <br>
 복사 생성된 이 또 다른 `inode`는 포인터를 가리키고, 포인터가 원본 파일을 가리켜 원본의 데이터와 같은 데이터를 볼 수 있게 되는것 같다. < br>
@@ -52,8 +52,9 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
     -  `ls -i` inode 번호 출력
     - `ls -t` 마지막 수정 시간 기준으로 출력
     -  `ls -S` 사이즈 순서로 출력
-<img src="https://github.com/zziro95/zzipository/blob/main/images/lsl.png" width="70%" height="70%" title="lsl" alt="lslImg"></img> < br>
-<img src="https://github.com/zziro95/zzipository/blob/main/images/lsal.png" width="70%" height="70%" title="lsal" alt="lsalImg"></img> < br>
+<br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/lsl.png" width="70%" height="70%" title="lsl" alt="lslImg"></img> <br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/lsal.png" width="70%" height="70%" title="lsal" alt="lsalImg"></img> <br>
 위의 사진은 같은 폴더에 `ls-l`, `ls-al` 명령어를 실행한 결과이다.  <br>
 자세한 정보들을 출력해주는 공통점이 있고, 숨김 파일을 포함하여 출력해주느냐의 차이가 있다.  <br>
 이제 사진의 왼쪽부터 각각의 내용들이 의미하는게 뭔지 알아보자.  <br>
