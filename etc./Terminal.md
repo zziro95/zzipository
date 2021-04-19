@@ -1,26 +1,27 @@
-### Terminal
-
+# Terminal
+### 글쓰게 된 이유
 Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 내용이라도 집고 넘어가야 될 것 같아서 자연스럽게 글을 쓰게 되었습니다.
-
 깊게 들어가면 끝도 없을 것 같은 느낌에 필요한 부분 정도만 정리해 보고자 합니다.
 
-#### 명령어
- `~` = 사용자의 홈 디렉토리
- `/` = `root` 최상위 디렉토리
-`pwd` = `Print Working Directory` 현재 디렉토리 경로 출력
-`cd` = `changeDirectory` 이동
-    `cd` 또는 `cd~` 홈 디렉토리로 이동
-    `cd /` 최상위 루트 디렉토리(/)로 이동
-    `cd ..` 한단계 상위 디렉토리로 이동
-    `cd -` 바로전에 위치했던 디렉토리로 이동
-`mkdir` = `makeDirectory` 디렉토리 생성
-`ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인
+***
+### 명령어
+ `~` = 사용자의 홈 디렉토리 < br>
+ `/` = `root` 최상위 디렉토리 < br>
+`pwd` = `Print Working Directory` 현재 디렉토리 경로 출력 < br>
+`cd` = `changeDirectory` 이동 < br>
+    `cd` 또는 `cd~` 홈 디렉토리로 이동 < br>
+    `cd /` 최상위 루트 디렉토리(/)로 이동 < br>
+    `cd ..` 한단계 상위 디렉토리로 이동 < br>
+    `cd -` 바로전에 위치했던 디렉토리로 이동 < br>
+`mkdir` = `makeDirectory` 디렉토리 생성 < br>
+`ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인 < br>
 
-#### ls 명령어를 보기전에..
-`ls` 명령어에 대해 공부를 하다보니 `하드링크`, `심볼릭링크`라는 개념을 마주하게 되었고, 그 과정에서 `inode`라는게 무엇인지 알아봐야했다.
-이것들에 대해 살펴본후 `ls` 명령어에 대해 조금 더 알아보자.
+***
+### ls 명령어를 보기전에..
+`ls` 명령어에 대해 공부를 하다보니 `하드링크`, `심볼릭링크`라는 개념을 마주하게 되었고, 그 과정에서 `inode`라는게 무엇인지 알아봐야했다. < br>
+이것들에 대해 살펴본후 `ls` 명령어에 대해 조금 더 알아보자. < br>
 
-##### inode와 Hard Link, Symbolic Link
+### inode와 Hard Link, Symbolic Link
 `inode`란 무엇인가???
 - 리눅스 파일 시스템에서 사용되는 자료 구조이다.
 - **inode 파일 혹은 디렉토리의 각종 정보들을 담고 있다.**
@@ -30,10 +31,10 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
 - inode는 데이터의 우편번호 역할을 한다고 볼 수 있다.?!
 - **파일의 Data block이 디스크 상의어느 주소에 위치하고 있는가와 같은 파일에 대한 중요한 정보를 갖고 있다.**
 
-<img src="https://github.com/zziro95/zzipository/blob/main/images/inode.png" width="70%" height="70%" title="inode" alt="inodeImg"></img>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/inode.png" width="70%" height="70%" title="inode" alt="inodeImg"></img> < br>
 원본파일로 `하드 링크`를 만들면, 하드 링크는 원본 파일과 동일한 inode를 직접 가리킨다. ~~(그래서 원본 파일이 사라지더라도 데이터만 살아 있다면 원본 파일에 접근이 가능하다고 한다..)~~ <br>
 그러나 `심볼릭 링크`(소프트링크라고도 불린다)의 경우는 만들게 되면 또 다른 inode를 생성하고 이를 바라본다. <br>
-복사 생성된 이 또 다른 `inode`는 포인터를 가리키고, 포인터가 원본 파일을 가리켜 원본의 데이터와 같은 데이터를 볼 수 있게 되는것 같다.
+복사 생성된 이 또 다른 `inode`는 포인터를 가리키고, 포인터가 원본 파일을 가리켜 원본의 데이터와 같은 데이터를 볼 수 있게 되는것 같다. < br>
 **특정 데이터에 접근할 때. 심볼릭 링크를 통해 접근하는 경우는 포인터를 통해 원본 파일을 거치게 되기 때문에 원본 파일과 동일한 데이터를 볼 수 있지만 원본이 사라지는 경우 해당 데이터에 접근할 수 없다.**
  <br>
 
@@ -41,16 +42,16 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
 나름의 정리를 해보자면 `하드 링크`는 파일이 아니라 파일 이름과 `inode`와의 연결 관계이고 원본 파일과 동일한 `inode`를 가지고, 
 `심볼릭 링크`는  윈도우의 바로 가기(단축아이콘)과 비슷한 개념으로 다른 파일이나 디렉토리를 가리키는 파일이라고 이해해 보았다.
 
-##### ls 명령어
-`ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인
-    `la -a` `(all)` 숨겨진 파일, 디렉토리까지 모두 확인
-    `ls -l` 리스트의 자세한 정보를 출력
-    `ls -al` 숨김 파일을 포함하여 자세한 정보를 출력
-    `ls -i` inode 번호 출력
-    `ls -t` 마지막 수정 시간 기준으로 출력
-    `ls -S` 사이즈 순서로 출력
-<img src="https://github.com/zziro95/zzipository/blob/main/images/lsl.png" width="70%" height="70%" title="lsl" alt="lslImg"></img>
-<img src="https://github.com/zziro95/zzipository/blob/main/images/lsal.png" width="70%" height="70%" title="lsal" alt="lsalImg"></img>
+### ls 명령어
+`ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인 < br>
+    `la -a` `(all)` 숨겨진 파일, 디렉토리까지 모두 확인 < br>
+    `ls -l` 리스트의 자세한 정보를 출력 < br>
+    `ls -al` 숨김 파일을 포함하여 자세한 정보를 출력 < br>
+    `ls -i` inode 번호 출력 < br>
+    `ls -t` 마지막 수정 시간 기준으로 출력 < br>
+    `ls -S` 사이즈 순서로 출력 < br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/lsl.png" width="70%" height="70%" title="lsl" alt="lslImg"></img> < br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/lsal.png" width="70%" height="70%" title="lsal" alt="lsalImg"></img> < br>
 위의 사진은 같은 폴더에 `ls-l`, `ls-al` 명령어를 실행한 결과이다.  <br>
 자세한 정보들을 출력해주는 공통점이 있고, 숨김 파일을 포함하여 출력해주느냐의 차이가 있다.  <br>
 이제 사진의 왼쪽부터 각각의 내용들이 의미하는게 뭔지 알아보자.  <br>
@@ -69,12 +70,13 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
     - 원본 파일의 심볼릭 링크 파일을 만들어도 이 링크 수는 변하지 않음을 의미한다고 보면 될 것같다.
  - 나머지 줄은 이해하기 어려운 내용들은 아닌것 같다.
 
-#### 마무리글
+### 마무리글
 Git을 공부하려다가 터미널을 보게 되었는데 inode, Hard Link, Symbolic Link덕에 머리가 좀 아프다. <br>
 정확히 다 이해한 것 같지는 않지만 살펴봤다는것에 의미를 두려고한다. <br>
 분명 다시 회고하게 되는날이 올것이다! <br>
 
-#### 참고
+***
+### 참고
 - [Terminal](https://ttend.tistory.com/765, "Terminal")
 - [inode & link](https://www.leafcats.com/141, "inode & link")
 - [inode & link](https://blog.naver.com/sunguru/220743142052, "inode & link")
