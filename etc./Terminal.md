@@ -14,6 +14,10 @@ Git, Github에 대해 글을 정리하려고 보니 터미널의 기본적인 �
     - `cd ..` 한단계 상위 디렉토리로 이동
     - `cd -` 바로전에 위치했던 디렉토리로 이동
  - `mkdir` = `makeDirectory` 디렉토리 생성
+ - `rmdir` = `removeDirectory` 디렉토리 삭제
+ - `open .` 현재 경로로 `Finder`열기 
+ - `touch 파일명.확장자명` 파일 생성
+ - `vim or vi` vim 편집기 실행  
  - `ls` = `list` 디렉토리에 있는 내용(디렉토리, 파일)을 확인
 
 ***
