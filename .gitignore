@@ -22,6 +22,12 @@ DerivedData/
 *.perspectivev3
 !default.perspectivev3
 
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
 ## Obj-C/Swift specific
 *.hmap
 
