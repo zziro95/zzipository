@@ -23,7 +23,7 @@ Git - 소스 저장소, VCS 중하나
  <br>
  
  <img src="https://github.com/zziro95/zzipository/blob/main/images/gitsnapshot.png" width="70%" height="70%" title="gitsnapshot" alt="gitsnapshot"></img> <br>
-`Git`은 시간순으로 프로젝트의 스냅샷을 저장한다고 생각하면 이해가 쉽다.
+`Git`은 시간순으로 프로젝트의 스냅샷을 저장한다고 생각하면 이해가 쉽다. <br>
 변경되지 않은 파일들을 이전 상태 그대로 가지고 가고, 변경된 파일들은 변경 사항을 적용해 최신 버전의 상태로 관리를 하게 되는 것이다. <br>
 위에서 `VCS`에 대해서 이야기했듯이 특정 버전으로 돌아가 `Branch`를 이용해 새로운 방향으로 수정해 나갈 수 있다는 점이 가장 매력적이다. <br>
 
@@ -38,9 +38,13 @@ Git - 소스 저장소, VCS 중하나
 **Working Tree**
 - 저장소를 어느 한 시점에서 바라보는 작업자의 현재 시점
 - 특정 버전, `Branch`를 checkout 한 것
+<br>
+
 **Working Directory**
 - 실제 작업하고 있는 공간
 - 내 로컬 저장소에서의 작업하는 공간
+<br>
+
 **Head**
 - 현재 작업 중인 Branch를 가리키는 포인터이다.
 <br>
@@ -81,6 +85,7 @@ Git - 소스 저장소, VCS 중하나
 이 충돌을 해결해 주어야 원하는 기능대로 작동이 되기 때문에 협업을 하는 과정에서 이 `Conflict`이 발생하지 않도록 서로 역할을 나누어 작업하는 등 주의를 하고 있다. <br>
 <br>
 
+---
 ### Staging Area가 왜 필요한가??
 왜애 필요한가~~ <br>
 
@@ -152,11 +157,20 @@ Git - 소스 저장소, VCS 중하나
 
 ---
 ### git karma style
+`Git Commit Msg` 작성에 관련된 내용이다. 커밋 메세지를 어떻게 작성하느냐도 굉장히 중요한 부분이다. <br>
+오픈소스를 통해 소통을 하거나 동료들과 협업하는 과정에서 일관성 있는 형식의 커밋메시지로 소통을 한다면 서로가 어떤 작업을 했는지 이해하기 쉽고, 탐색하기 쉬울것 이다. <br>
 `이니`에게 배워 지금까지도 잘 사용하고 있는 `git karma style` <br>
 많은 개발자들이 사용하고 있고, 사용하다 보니 익숙해지기도 해서 쓰고 있다. <br>
-이 스타일에 대해서 알아보고 키워드를 정리해봤다.
+- feat: 사용자를 위한 새로운 기능 추가
+- fix: 사용자에 대한 버그 수정
+- docs: 문서 파일 추가 및 수정
+- style: 서식, 주석 등 동작에 관련 없는 수정 (오탈자 변경 등)
+- refactor: 코드 리팩토링, ex) 프로퍼티나 메서드 네이밍 수정하는 것
+- test: 테스트 관련 작업 (추가, 리팩토링 등)
+- chore: 알맞은 사용인지는 모르겠지만 기타(잡일) 작업을 했을 경우 이 키워드를 주로 사용한다.
+<br>
 
-**카르마 스타일 정리한거 넣기**
+나는 주로 이슈가 있는 경우까지 포함한 `"feat: #이슈번호 커밋 내용"`의 형식으로 커밋 메시지를 작성 중이다. <br>
 
 ---
 
@@ -177,6 +191,7 @@ Git - 소스 저장소, VCS 중하나
 - [참고블로그](https://medium.com/@joongwon/git-git-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC-c25b421ecdbd, "참고블로그")
 - [gitignore](https://www.toptal.com/developers/gitignore, "gitignore")
 - [GitBranchGame](https://learngitbranching.js.org/?locale=ko, "GitBranchGame")
+- [GitKarmaStyle](http://karma-runner.github.io/0.10/dev/git-commit-msg.html, "GitKarmaStyle")
 - [회고할때 conflict에 대해 다시 살펴보기-관련 블로그](https://velog.io/@ha0kim/GIT-conflict-%EC%8B%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95, "GitConflict")
 - [다음 수정할 때 보기-Git기초](https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%88%98%EC%A0%95%ED%95%98%EA%B3%A0-%EC%A0%80%EC%9E%A5%EC%86%8C%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0, "Git기초")
 
