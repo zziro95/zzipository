@@ -1,7 +1,6 @@
 # :fox_face: zzipository :fox_face:
 ---
-`iOS` 개발 공부를 하면서 이해한만큼 정리하기위한 저장소 입니다. 
-
+`iOS` 개발 공부를 하면서 이해한만큼 정리하기위한 저장소 입니다. <br>
 ***
 
 ### Swift
@@ -12,7 +11,10 @@
 ---
 ### iOS
 - Xcode
-    - iOS Deployment Target
+    - [iOS Deployment Target](https://github.com/zziro95/zzipository/blob/main/iOS/iOS%20Deployment%20Target.md)
+    
+- WWDC
+    - [[2019] Architecting Your App for Multiple](https://github.com/zziro95/zzipository/blob/main/iOS/ArchitectingYourAppforMultiple(App%26SceneDelegate).md)
     
 ---
 ### CS
@@ -20,7 +22,7 @@
 
 ---
 ### etc.
- - Terminal
+ - [Terminal](https://github.com/zziro95/zzipository/blob/main/etc./Terminal.md)
 
 ---
 ### TIL
