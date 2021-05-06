@@ -3,9 +3,8 @@
 AppDelegate SceneDelegate를 공부하기 위해 알아보던 도중 관련 WWDC가 있다는 것을 알게 되었고 보면서 정리하기 위해 글을 쓰게 되었습니다. <br>
 
 ***
-### 정리 글
 [[WWDC 2019] Architecting Your App for Multiple Windows](https://developer.apple.com/videos/play/wwdc2019/258/)에서 세 가지 주제에 관하여 이야기를 합니다. <br>
-#### Changes to app lifecycle, Using the scene delegate
+### 1,2) Changes to app lifecycle, Using the scene delegate
 시작하기 앞서 iOS 12 및 이전 버전에서 AppDelegate의 역할과 책임에 대해서 알아봅니다. <br>
 - 첫 번째 역할은 애플리케이션에 프로세스 수준 이벤트(프로세스가 시작되거나 종료 되는)를 알리는 것이다.
 - 두 번째 역할은 어떤 방법을 통해 foreground 상태에 들어가거나, active 상태에서 빠져나오는 것과 같은 애플리케이션의 UI 상태를 알리는 것이다. <br>
@@ -31,7 +30,7 @@ iOS 13버전 이후부터는 AppDelgate의 책임은 `프로세스 수준 이벤
 <img src="https://github.com/zziro95/zzipository/blob/main/images/UIStaterelatedmethods.png" width="70%" height="70%" title="UIStaterelatedmethods" alt="UIStaterelatedmethodsImg"></img> <br>
 위의 메서드 집합들을 유지하면 버전에 맞게 UIKit이 런타임에 올바른 집합을 호출하기 때문에 iOS 13.0 이상과 그 아래의 버전 모두 정상적으로 작동한다고 한다. <br>
 
-#### Architecture
+### 3) Architecture
 상태 복원에 대해서 iOS 13에서는 별로 좋지 않다고 이야기한다. 애플리케이션이 `scene-base` 상태 복원을 구현하는 게 더 중요하다고 합니다. <br>
 보여준 예시를 살펴보며 이해해 보자. <br>
 <img src="https://github.com/zziro95/zzipository/blob/main/images/sameTime&ConversationDifferentView.png" width="70%" height="70%" title="sameTime&ConversationDifferentView" alt="sameTime&ConversationDifferentViewImg"></img> <br>
@@ -43,7 +42,7 @@ iOS 13버전 이후부터는 AppDelgate의 책임은 `프로세스 수준 이벤
 그림과 같이 하나의 `Scene`만 업데이트되었음을 볼 수 있다. <br>
 <br>
 
-<img src="https://github.com/zziro95/zzipository/blob/main/images/structuredImage.png" width="70%" height="70%" title=" structuredImage" alt=" structuredImageImg"></img> <br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/structuredImage.png" width="70%" height="70%" title="structuredImage" alt="structuredImageImg"></img> <br>
 버튼 탭을 통해 보내기 버튼을 누르면 뷰 컨트롤러가 자체 UI를 업데이트한다. <br>
 그 후 뷰 컨트롤러는 모델 또는 모델 컨트롤러에 알린다. <br>
 이건 하나의 사용자 인터페이스 인스턴스를 가질 때(iOS 12 이전 버전)는 괜찮지만 위와 같이 동일한 데이터를 보여주는 다른 `Scene`에 다른 `ViewController`를 도입하면 새 데이터로 자체 업데이트하라는 알림을 받지 않는다. <br>
