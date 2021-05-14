@@ -6,23 +6,31 @@
 ### Swift
 - Swift
     - 객체지향, 함수형, 프로토콜 지향 프로그래밍
-    - Struct / Class
+    - Class Struct
+    - Initialization
     
 ---
 ### iOS
 - Xcode
     - [iOS Deployment Target](https://github.com/zziro95/zzipository/blob/main/iOS/iOS%20Deployment%20Target.md)
-    
+
+- Auto Layout
+    - Frame Bounds
+
+
+
 - WWDC
     - [[2019] Architecting Your App for Multiple](https://github.com/zziro95/zzipository/blob/main/iOS/ArchitectingYourAppforMultiple(App%26SceneDelegate).md)
     
 ---
 ### CS
  - 객체 / 객체지향 프로그래밍
+ - [inflearn] 운영체제 공룡책 강의
 
 ---
 ### etc.
  - [Terminal](https://github.com/zziro95/zzipository/blob/main/etc./Terminal.md)
+ - Git Github
 
 ---
 ### TIL
