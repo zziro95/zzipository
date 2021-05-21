@@ -127,6 +127,11 @@ Git - 소스 저장소, VCS 중하나
  - `git add` 파일을 추적하기 (`Git Staging Area`로 보낸다)
     - 디렉토리의 변경 이력을 추적하기 위해 `git init`을 해주고, 새로운 파일을 생성하거나 변경해 주었다면 `git status` 명령어를 통해 (새로운 파일) 추적되지 않거나, (기존에 있었지만) 변경된 파일을 확인하게 된다.
     - `git add 파일이름` 특정 파일이나 디렉토리를 추적하기 또는 `git add .` 모든 변경 사항을 추적하기를 통해 파일을 추적한다.
+    - `git add -p` 현재 `Working Directory`와 `Staging Area(Index)`의 차이점 확인하고 patch 할 것인지 아닌지 선택할 수 있다.
+        - `git diff` 와 `add`의 기능이 합쳐져 있다고 생각이 들었다.
+        - **hunk**란 보이는 변경사항 하나 하나의 단위이고, `Stage this hunk [y,n,q,a,d,/,j,J,g,e,?]?` 라는 문구가 나온다.
+        - <img src="https://github.com/zziro95/zzipository/blob/main/images/gitadd-p.png" width="70%" height="70%" title="gitadd-p" alt="gitadd-pImg"></img> <br>
+        - ?를 입력해 각 각의 의미를 알 수 있고, 주로 변경사항을 `Staging Area`에 추가해 주겠다는 `y`와 그렇지 않겠다는 `n` 키워드, `q`를 가장 많이 쓴다. 
  - `git commit` 추적되고 수정된 모든 파일의 변경 사항 커밋 하기
     - `git commit -m "커밋 내용에 대해서 적어주기"`
     - 나의 경우는 `git commit -m "feat: #이슈번호 커밋 내용`의 포멧으로 적어주고 있고, 이 스타일은 `git karma style`이다
@@ -139,7 +144,7 @@ Git - 소스 저장소, VCS 중하나
  <br>
  
 **Git Todos**
-**명령어들 추가적으로 정리하기  git merge  git amend? apply? git reset soft git reset hard / reset / revert**
+**명령어들 추가적으로 정리하기  git add -p git merge  git amend? apply? git reset soft git reset hard / reset / revert**
 **git stash git stash pop git checkout 브랜치**
 **브랜치가 여러개 있을 경우 작업중에 잠시 브랜치를 변경하고 싶을 때 용이하다.!**
 **git reset과 revert의 차이, 야곰이 말한 revert(성공,실패)해보기**
@@ -194,5 +199,3 @@ Git - 소스 저장소, VCS 중하나
 - [GitKarmaStyle](http://karma-runner.github.io/0.10/dev/git-commit-msg.html, "GitKarmaStyle")
 - [회고할때 conflict에 대해 다시 살펴보기-관련 블로그](https://velog.io/@ha0kim/GIT-conflict-%EC%8B%9C-%ED%95%B4%EA%B2%B0%ED%95%98%EB%8A%94-%EB%B0%A9%EB%B2%95, "GitConflict")
 - [다음 수정할 때 보기-Git기초](https://git-scm.com/book/ko/v2/Git%EC%9D%98-%EA%B8%B0%EC%B4%88-%EC%88%98%EC%A0%95%ED%95%98%EA%B3%A0-%EC%A0%80%EC%9E%A5%EC%86%8C%EC%97%90-%EC%A0%80%EC%9E%A5%ED%95%98%EA%B8%B0, "Git기초")
-
-***
