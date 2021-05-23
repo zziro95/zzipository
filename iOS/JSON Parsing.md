@@ -130,33 +130,24 @@ if let persons =  json["persons"] as? [[String: Any]]{
  ---
  
  ### Codable
- [Codable](https://developer.apple.com/documentation/swift/codable)도 공식문서를 살펴보면 자신을 외부 표현으로 변환하거나 외부 표현으로 변환 할 수 있게 하는 프로토콜임을 알 수 있다. (자신(type) <-> 외부표현(ex. JSON))   
+ [Codable](https://developer.apple.com/documentation/swift/codable)도 공식문서를 살펴보면 자신을 외부 표현으로 변환하거나 외부 표현으로 변환 할 수 있게 하는 프로토콜임을 알 수 있다.    (자신(type) <-> 외부표현(ex. JSON))   
  또한 `Encodable` & `Decodable` 프로토콜의 typealias 이므로 인코딩과 디코딩을 모두 가능하도록 지원해주는 프로토콜이다.     
  하지만 정의하는 타입이 인코딩을 하지 않을 경우에는 `Decodable` 만 채택하는 방식이 더 이유있는 코드에 가깝다고 생각한다.    
  <br>
  
  `Decodable`은 외부 표현에서 자신의 형식으로 변환 해주는 프로토콜이고 (Parsing), `Encodable`은 자신을 외부 표현으로 변환 해주는 프로토콜이다.   
- 
- 
- 
- `CodingKey`도 정리하기   
--  스네이크케이스로 되어있던 부분을 통일감있게 카멜케이스로 변환해주기 위해 사용하였는데, 축약된 표현이나 타입의 프로퍼티로서 모호한 네이밍을 좀 더 명확하게 바꿔줄 수 있다는 장점이 있다
- 
+ **<Struct, Class, Enum 전부 채택 가능>>**    
  
  ---
+ 
+ ### CodingKey
+JSON 형태의 데이터로 변환하고자 하면, 기본적으로 JSON 타입의 키(Key)와 사용자가 정의한 프로퍼티가 일치해야 한다.   
+Key와 프로퍼티의 이름을 다르게 사용하고 싶다면, 타입 내부에 CodingKeys 라는 String 타입의 열거형을 선언 (why:question: `JSON의 키값은 String 타입이니까`) , CodingKey 프로토콜을 채택하면 된다.   
+<br>
 
+나는 `CodingKey`를 JSON의 키 값이 스네이크케이스로 되어있던 부분을 카멜케이스로 변환해주기 위해 사용하였는데, **축약된 표현이나 타입의 프로퍼티로서 모호한 네이밍을 좀 더 명확하게 바꿔줄 수 있다**는 장점이 있다.   
 
-
-
- 스위프트, 엑스코드에서 어떻게 쓰이는지 , 오류타입, 오류해결 다양한걸 다뤄보자
- ### 소제목
- ~~
-
- ***
- ### 소제목
- ~~
-
- ***
+***
  ### 마무리 글
  JSON 데이터의 내용을 로컬을 통해 가져오거나, API를 통해 받아온다
  <br>
@@ -177,4 +168,5 @@ if let persons =  json["persons"] as? [[String: Any]]{
  - [Codable](https://developer.apple.com/documentation/swift/codable)
  - [Encoding and Decoding Custom Types
 ](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types)
- 
+- [CodingKey](https://developer.apple.com/documentation/swift/codingkey)
+- [Naverboostcourse](https://www.boostcourse.org/mo326/lecture/18732) 
