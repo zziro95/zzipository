@@ -35,7 +35,8 @@ Swift에서는 `UnsignedInt`도 지원하고 있다.
 부호가 없는 정수 타입이 필요한 경우에만 사용할 것을 권장한다.   
 밑줄 친 부분을 보면 **저장될 값이 음수가 아니더라도 `Int`를 사용하는 것을 선호한다**고 말한다.    
 - 정수값에 `Int`를 일관되게 사용하면 코드 interoperability(상호 운용성)을 돕는다.
-- `Type Safety` and Type Inference에 설명된 대로 다른 Number Type 간에 변환할 필요가 없다.   
+- `Type Safety and Type Inference`에 설명된 대로 서로 다른 Number Type 간에 변환할 필요가 없다.
+- `Int` 타입을 사용함으로써 정수형 타입의 추론에도 도움이 된다.   
 
 ***
 ### Floating-Point Numbers
