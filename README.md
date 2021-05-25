@@ -15,7 +15,9 @@
 ### iOS
 - iOS
     - [JSON Parsing](https://github.com/zziro95/zzipository/blob/main/iOS/JSON%20Parsing.md)
+    - Decoding / Encoding 이 될듯? Error와 디코딩 인코딩 관련 내용 쓰기
     - [UIKit Foundation](https://github.com/zziro95/zzipository/blob/main/iOS/UIKit%20Foundation.md)
+    - [setUp tearDown](https://github.com/zziro95/zzipository/blob/main/iOS/setUp%20tearDown.md)
     
 - Xcode
     - [iOS Deployment Target](https://github.com/zziro95/zzipository/blob/main/iOS/iOS%20Deployment%20Target.md)
