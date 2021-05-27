@@ -24,20 +24,20 @@ XCTestCase를 통해 `Customizing Test Setup and Teardown` 이 외에도 `Handli
 
 #### Defining Test Cases and Test Methods
 문서를 살펴보면 프로젝트에 테스트를 추가하려면   
-- test target 안에 XCTestCase를 상속받는 새 클래스를 만들어준다.
+- test target 안에 `XCTestCase`를 상속받는 새 클래스를 만들어준다.
 - test case에 하나 이상의 test method를 만들어 준다.
 - test method에 하나 이상의 test assertion을 만들어 준다.   
 <br>
 
 **Test Method**   
 - `no parameters`, `no return value`이고 `test`로 네이밍이 시작하는 XCTestCase를 상속받은 클래스의 인스턴스 메서드이다.   
-- XCTest Framework에 의해 자동으로 감지된다고 한다.   
+- `XCTest` Framework에 의해 자동으로 감지된다고 한다.   
 - 네이밍은 테스트 케이스의 테스트를 요약하는 이름을 지정한다.
 - 주로 `test_하려고_하는_테스트`의 형식으로 메서드의 이름을 지어주는 것 같다.   
 <br>
 
 #### Test Assertions
-XCTest Framework를 통해 `Test Method`가 예상대로 동작하는지 확인할 수 있다.   
+`XCTest` Framework를 통해 `Test Method`가 예상대로 동작하는지 확인할 수 있다.   
 정말 많은 Test Assertion이 있고 많이 쓸 거 같은 메서드들만 정리해 봤다.   
 그 외에도 어떤 것들을 확인할 수 있는지 간략하게 살펴보고 정리했다.   
 
@@ -59,17 +59,162 @@ XCTest Framework를 통해 `Test Method`가 예상대로 동작하는지 확인�
 
 ***
 ### XCTestSuite
-~~
+일반적으로, `Xcode`는 자동으로 Test Suite를 관리한다고 한다.   
+사용자 정의 Test Suite를 정의해야 하는 경우에만 사용한다고 한다.   
 
 ***
 ### setUp tearDown
+setUp tearDown 관련 [[Article] Understanding Setup and Teardown for Test Methods](https://developer.apple.com/documentation/xctest/xctestcase/understanding_setup_and_teardown_for_test_methods)가 있어서 문서를 토대로 정리해보았다.   
+<br>
+
+테스트를 할 때 실행하기 전 초기 상태를 준비하는 작업 `setUp` 과 테스트가 완료된 후 정리하는 작업. `tearDown` 이 필요하다.   
+**여러 가지 방법**으로 테스트 상태의 setUp, tearDown을 사용자 정의할 수 있다.   
+- setUp() `Class method`를 override 하여 **모든** 테스트 메서드들의 초기 상태를 설정한다.
+- setUpWithError() `Instance method`를 override 하여 **각** 테스트 메서드가 실행되기 전에 초기 상태를 설정하고 관련 오류를 처리한다.
+- setUp() `Instance method`를 override 하여 **각** 테스트 메서드가 실행되기 전에 초기 상태를 설정한다.
+- 테스트 메서드가 실행되는 동안 addTeardownBlock(_:) 메서드를 사용하여 **자체** 포함된 분해 코드를 등록한다.
+- tearDown() `Instance method`를 override 하여 **각** 테스트 메서드가 완료된 후 tearDown을 수행한다.
+- tearDownWithError() `Instance method`를 override 하여 **각** 테스트 메서드가 완료된 후 관련 오류를 처리한다.
+- tearDown() `Class method`를 override 하여 **모든** 테스트 메서드가 완료된 후 최종적으로 tearDown을 수행한다.   
+<br>
+
+> setUp(), tearDown() `Class method` 들은 `XCTestCase`에 정의되어 있지만, setUp(), setUPWithError(), tearDown(), tearDownWithError() `Instance method` 들은 `XCTest` 클래스에 정의되어 있다.   
+<br>
+
+#### Test Case의 실행 순서
+Test Case의 실행 순서를 살펴보기 위해서 공식 문서의 예제 코드와 이미지를 가져왔다.   
+```swift
+class SetUpAndTearDownExampleTestCase: XCTestCase {
+    override class func setUp() { // 1.
+        // This is the setUp() class method.
+        // It is called before the first test method begins.
+        // Set up any overall initial state here.
+    }
+    
+    override func setUpWithError() throws { // 2.
+        // This is the setUpWithError() instance method.
+        // It is called before each test method begins.
+        // Set up any per-test state here.
+    }
+    
+    override func setUp() { // 3.
+        // This is the setUp() instance method.
+        // It is called before each test method begins.
+        // Use setUpWithError() to set up any per-test state,
+        // unless you have legacy tests using setUp().
+    }
+    
+    func testMethod1() throws { // 4.
+        // This is the first test method.
+        // Your testing code goes here.
+        addTeardownBlock { // 5.
+            // Called when testMethod1() ends.
+        }
+    }
+    
+    func testMethod2() throws { // 6.
+        // This is the second test method.
+        // Your testing code goes here.
+        addTeardownBlock { // 7.
+            // Called when testMethod2() ends.
+        }
+        addTeardownBlock { // 8.
+            // Called when testMethod2() ends.
+        }
+    }
+    
+    override func tearDown() { // 9.
+        // This is the tearDown() instance method.
+        // It is called after each test method completes.
+        // Use tearDownWithError() for any per-test cleanup,
+        // unless you have legacy tests using tearDown().
+    }
+    
+    override func tearDownWithError() throws { // 10.
+        // This is the tearDownWithError() instance method.
+        // It is called after each test method completes.
+        // Perform any per-test cleanup here.
+    }
+    
+    override class func tearDown() { // 11.
+        // This is the tearDown() class method.
+        // It is called after all test methods complete.
+        // Perform any overall cleanup here.
+    }
+}
+```   
+<br>
+
+<img src="https://github.com/zziro95/zzipository/blob/main/images/OrderOfExecutionForExampleTestCase.png" width="70%" height="70%" title="OrderOfExecutionForExampleTestCase" alt="OrderOfExecutionForExampleTestCaseImg"></img>  
+<br>
+
+예제 코드와 도식화된 이미지를 보니 이해에 도움이 되었다.   
+💡 여기서 중요한 포인트는 `XCTest`가 `LIFO` (후입선출) 순서로 teardown block들을 실행하기 때문에 `addTeardownBlock`을 사용하여 실행되는 블록의 순서는 8번 teardown block, 7번 teardown block이다.   
+<br>
+
+**addTeardownBlcok**   
+또한 이해가 잘되지 않았던 `addTeardownBlock`은 테스트를 하면서 생성된 파일을 삭제하는 거와 같은 각 테스트 메서드 안에서 **각 테스트 메서드가 끝날 때 호출되고** 실행한 작업을 tearDown 해주는 역할을 한다고 이해하였다.   
+<br>
+
+> 추가로 setUp(), setUPWithError(), tearDown(), tearDownWithError() `Instance method` 들에는 Test Assertion들이 포함될 수 있지만, 모든 테스트 메서드 실행의 일부로 평가된다고 한다.  
+> setUp(), tearDown() `Class method` 들에서는 Test Assertion이 포함할 수 없다.   
+> Test Assertion은 클래스 메서드 범위 내에 존재하지 않는 `Test Class Instance`가 필요하다.   
+   
+---
+### setUp, tearDown
+Xcode 11.4 이전 버전에서 테스트를 만들면 setUp과 tearDown 메서드가 기본적으로 있었는데,   
+Xcode 11.4 이후 버전에서 테스트를 만들면 setUpWithError, tearDownWithError가 기본적으로 있다.   
+<br>
+
+**setUp()**   
+- 클래스 안에 속하는 `테스트 메서드들이 호출되기 전` 한 번 호출된다.
+- 테스트 클래스에서 진행되는 테스트 케이스에서 공통으로 필요로 하는 행위들을 정의
+- ex. 객체 인스턴스 만들기, db 초기화 등   
+<br>
+
+**tearDown()**
+- `모든 테스트 케이스 메서드들이 종료된 후`  한 번 호출된다.
+- setUp에서 생성되고 테스트에서 사용된 것들을 해체할 내용들을 작성해 준다.
+- ex. 파일 닫기, 연결, 새로 만든 항목 제거 등   
+<br>
+
+**setUpWithError()**, **tearDownWith**는 각각 setUp, tearDown과 비슷한 역할을 하지만 발생하는 에러를 던져주는 메서드이다.   
+💡 만약 **setUpWithError()** 에서 초기 작업을 해주는데 이 초기 작업에서 에러가 날 경우에는 관련 테스트가 `Skip` 된다고 한다.   
+
+---
+
+### 고민 사항 (super, class, instance method)
+`Override`를 하기 때문에 super를 호출해야 하는데 다음과 같은 코드 위치에 선언해 주어야 한다고 한다.   
+super에 대한 지식이 부족하기 때문에 회고하면서 살펴보았으면 좋겠어서 글을 남겨 본다.   
+```swift
+override func setUp() {
+    super.setUp()
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+}
+
+override func tearDown() {
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    super.tearDown()
+}
+```   
+<br>
+
+#### super 해줘야 하는 이유? 
+- super가 없으면 비정상적인 동작을 할 수도 있다..?
+- super에 로직들이 포함되어 있을 수 있다.?   
+더 알아보고 수정하러 오자~   
+<br>
+
+#### 공부 후 다시 생각해 볼 것들
+setUp()과 tearDown() 메서드 /  class method와 instance method의 차이
 XCTest의 setUp tearDown, XCTestCase의 setUp tearDown의 차이가 있을까??   
-override와 super에 대해서도 좀 더 확실히 알아야 겠지..?
+override와 super에 대해서도 좀 더 확실히 알아야 겠지..?   
 
 ***
-
 ### 마무리 글
-~~
+setUp과 tearDown을 다룰 때 `Class method`와 `Instance method`라는 용어가 계속적으로 나왔는데 `Override` 개념과 함께 나와서 이해를 해도 조금 찝찝한 느낌이 있다..   
+내가 지금까지 이해한 바로는 `Class method`는 Unit Test를 하기 위해서 만든 클래스가 `XCTestCase`를 상속받기 때문에 사용할 수 있는 클래스의 메서드이고, `Instance method`는 그 클래스 안에서 정의한 메서드인데 setUp(), setUPWithError(), tearDown(), tearDownWithError() 메서드들은 `XCTestCase`의 슈퍼클래스인 XCTest에 정의된 메서드이기 때문에 `Override`해서 사용하는 것이라고 정리해 보았다.   
+확신을 위해 `Class method`와 `Instance method`, `Override`에 대해 더 공부가 필요한 것 같고 캠퍼들과 이야기해보는 것도 좋을 것 같다!   
 
 ***
 ### 참고
@@ -77,3 +222,8 @@ override와 super에 대해서도 좀 더 확실히 알아야 겠지..?
 - [[Class] XCTest](https://developer.apple.com/documentation/xctest/xctest)
 - [XCTestCase](https://developer.apple.com/documentation/xctest/xctestcase)
 - [Defining Test Cases and Test Methods](https://developer.apple.com/documentation/xctest/defining_test_cases_and_test_methods)
+- [XCTestSuite](https://developer.apple.com/documentation/xctest/xctestsuite)
+- [Understanding Setup and Teardown for Test Methods](https://developer.apple.com/documentation/xctest/xctestcase/understanding_setup_and_teardown_for_test_methods)
+- [XCTestCase]()
+- [Zedd님 블로그 setUpWithError tearDownWithError](https://zeddios.tistory.com/991)
+- [Zedd님 블로그 Unit Test](https://zeddios.tistory.com/48)
