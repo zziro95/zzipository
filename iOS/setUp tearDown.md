@@ -60,13 +60,16 @@ XCTestCase를 통해 `Customizing Test Setup and Teardown` 이 외에도 `Handli
 - Methods for Skipping Tests: 명시한 조건을 마주하면 테스트를 스킵 한다.   
 <br>
 
-💡고민 사항   
-오류가 발생했을때랑 그렇지 않았을때에 모든 상황에 대해 테스트 코드를 작성하고 싶다.   
+💡 고민 사항   
+오류가 발생했을 때 그렇지 않았을 때 모든 상황에 대해 테스트 코드를 작성하고 싶다.   
 JSON Data 디코딩으로 예를 들어보면 올바른 값이 들어와 디코딩에 성공한다면 `XCTAssertNoThrow()`를 이용하여 오류가 발생하지 않고 디코딩에 성공하는 테스트 코드는 테스트에 성공한다.   
 하지만 오류 발생한 상황에 대해 작성한 테스트 코드는 실패한다.   
-같은 시점에 발생할 수 없는 `성공/ 실패`에 대한 모든 테스트를 서로 독립적으로 테스트 할 수 있을까??   
-`Mock`객체를 통해 해결할 수 있을까 고민해보자!   
+같은 시점에 발생할 수 없는 `성공/ 실패`에 대한 모든 테스트를 서로 독립적으로 테스트할 수 있을까??   
+`Mock`객체를 통해 해결할 수 있을까 고민해 보자!   
 
+⁉️ 해결 방안
+1. 첫번째 드는 생각은 조금 단순했다. 테스트 하고자 하는 기능에 `input`이 존재할 테니 `성공/ 실패` 각 경우에 맞는 `input`, 예상되는 결과에 알맞는 `Test Assertions`을 이용해 테스트하면 될 것 같다.   
+2. `Mock`, `Stub` 등 `Test Double`에 대한 공부후 다시 고민할 필요.   
 ***
 ### XCTestSuite
 일반적으로, `Xcode`는 자동으로 Test Suite를 관리한다고 한다.   
@@ -237,3 +240,4 @@ setUp과 tearDown을 다룰 때 `Class method`와 `Instance method`라는 용어
 - [XCTestCase]()
 - [Zedd님 블로그 setUpWithError tearDownWithError](https://zeddios.tistory.com/991)
 - [Zedd님 블로그 Unit Test](https://zeddios.tistory.com/48)
+- [Getting Started With Unit Testing | XCTest | Swift](https://www.youtube.com/watch?v=P-Zow2yVx4o&t=1481s)
