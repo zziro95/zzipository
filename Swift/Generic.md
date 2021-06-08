@@ -147,7 +147,74 @@ func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
 ```   
 
 ---
-### 소제목
+### Associated Types
+프로토콜을 정의할 때 연관 타입 `Associated Type`을 함께 정의하면 유용할 때가 있다.   
+`Associated Type`은 프로토콜에서 사용할 수 있는 placeholder 이름이라고 한다.   
+`Struct`, `Class`, `Eunm`에서 `<T>`와 같은 역할로 볼 수 있는것 같다.   
+```swift
+protocol Container {
+    associatedtype Item
+    mutating func append(_ item: Item)
+    var count: Int { get }
+    subscript(i: Int) -> Item { get }
+}
+```   
+Container 라는 프로토콜을 정의하는데 `associatedtype`으로 Item을 정의한 것을 볼 수 있다.   
+Item은 placeholder 이기 때문에 이 프로토콜과의 관계에 따라 Item 이라는 이름으로 써 준것 같다. (associatedtype T 로 해도 상관없는듯 하다.)   
+Item이라는 타입은 존재하지 않는 타입으로 실제로 사용하게 될 특정한 하나의 타입을 의미한다.  
+- Container 타입으 새로운 Item을 append 메서드를 통해 추가할 수 있어야 한다.   
+- Item의 개수를 확인할 수 있도록 Int 타입의 count 프로퍼티를 구현해야 한다.   
+- Int 타입의 index 값으로 특정 index에 해당하는 아이템을 가져올 수 있는 서브스크립트를 구현해야 한다.   
+여기서 중요한 것은 Item이 어떤 특정타입이 아닌 모든 타입이 될 수 있다는 것이다. (단, 코드 내부의 Item 타입들은 하나의 동일한 타입이여야 한다.).  
+```swift
+// 제네릭 타입이 아닌 Int Stack에 Container 프로토콜 채택
+struct IntStack: Container {
+    // original IntStack implementation
+    var items: [Int] = []
+    mutating func push(_ item: Int) {
+        items.append(item)
+    }
+    mutating func pop() -> Int {
+        return items.removeLast()
+    }
+    
+    // conformance to the Container protocol
+    typealias Item = Int
+    mutating func append(_ item: Item) {
+        self.push(item)
+    }
+    var count: Int {
+        return items.count
+    }
+    subscript(i: Int) -> Item {
+        return items[i]
+    }
+}
+
+// 제네릭 타입인 Stack에 Container 프로토콜 채택
+struct Stack<Element>: Container {
+    // original Stack<Element> implementation
+    var items: [Element] = []
+    mutating func push(_ item: Element) {
+        items.append(item)
+    }
+    mutating func pop() -> Element {
+        return items.removeLast()
+    }
+    // conformance to the Container protocol
+    mutating func append(_ item: Element) {
+        self.push(item)
+    }
+    var count: Int {
+        return items.count
+    }
+    subscript(i: Int) -> Element {
+        return items[i]
+    }
+}
+```    
+
+Extending an Existing Type to Specify an Associated Type 아래 내용 보기   
 
 ---
 ### 마무리 글
@@ -162,3 +229,4 @@ func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
 - [SwiftProgrammingLanguage](https://docs.swift.org/swift-book/LanguageGuide/Generics.html)
 - `야곰의 SWIFT 프로그래밍 3판`
 - [Type Safety and Type Inference 정리 글](https://github.com/zziro95/zzipository/blob/main/Swift/Type%20Safety%20and%20Type%20Inference.md)
+- [Associated Types 볼 때 같이 보기](https://kka7.tistory.com/128)
