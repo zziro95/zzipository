@@ -62,5 +62,5 @@ Floating-Point Numbers(부동 소수점 숫자)는 분수 성분을 가진 숫�
 
 ***
 ### 참고
-- [SwiftLanguageGuide](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html)
+- [Swift Language Guide](https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html)
 - [한국어 번역본](https://bbiguduk.gitbook.io/swift/language-guide-1/the-basics)

@@ -226,7 +226,7 @@ Extending an Existing Type to Specify an Associated Type 아래 내용 보기
 💧 다음 회고할 때는 `Hashable`, `Equatable`에 대해서 정리 후 다시 문서를 읽어보는 방향으로 진행하는 것이 좋을것 같다.   
 ***
 ### 참고
-- [SwiftProgrammingLanguage](https://docs.swift.org/swift-book/LanguageGuide/Generics.html)
+- [Swift Language Guide](https://docs.swift.org/swift-book/LanguageGuide/Generics.html)
 - `야곰의 SWIFT 프로그래밍 3판`
 - [Type Safety and Type Inference 정리 글](https://github.com/zziro95/zzipository/blob/main/Swift/Type%20Safety%20and%20Type%20Inference.md)
 - [Associated Types 볼 때 같이 보기](https://kka7.tistory.com/128)
