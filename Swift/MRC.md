@@ -35,6 +35,7 @@ Retain에 대해서 알아보자.
 
 #### autorelease
 autorelease pool 블록 내에서 생성한 객체들을 적절한 시점에 한 번에 해제할 수 있도록 해주는 방법   
+release를 연기하기 위해 사용한다.   
 
 ---
 ### 면접 대비 문제 & 답변
@@ -46,15 +47,16 @@ autorelease pool 블록 내에서 생성한 객체들을 적절한 시점에 한
 
 - [ ]  retain 과 assign 의 차이점을 설명하시오.
     - retain은 Retain Count 증가와 동시에 객체를 참조할 포인터 값을 설정
-    - assign은 Retain Count를 증가시키지 않고 객체를 참조할 포인터 값을 설정. weak와 비슷한 개념으로 보인다.   
+    - assign은 Retain Count를 증가시키지 않고 객체를 참조할 포인터 값을 설정. unowned와 비슷한 개념으로 보인다.   
 <br>
 
-- [ ]  특정 객체를 autorelease 하기 위해 필요한 사항과 과정을 설명하시오.
-    - autorelease pool은 pool 자체가 draining 될 때 메시지를 보내는 개체를 저장한다고 한다,
+- [ ] 특정 객체를 autorelease 하기 위해 필요한 사항과 과정을 설명하시오.
+    - autorelease pool은 pool 자체가 draining 될 때 메시지를 보내는 개체를 저장한다고 한다.
+    - draining 릴리즈 - 메모리가 해제되는 상황
     - lazy 한 방법같은데 이해가 잘 안된다..   
 <br>
 
-- [ ]  Autorelease Pool을 사용해야 하는 상황을 두 가지 이상 예로 들어 설명하시오.
+- [ ] Autorelease Pool을 사용해야 하는 상황을 두 가지 이상 예로 들어 설명하시오.
     - Foundation 전용 프로그램을 작성할 때
     - 스레드를 분리하는 경우
         - 애플리케이션 또는 스레드가 오래 지속되고 잠재적으로 많은 autoreleased objects들을 생성하는 경우 Autorelease Pool을 사용해야 한다고 한다.
@@ -73,3 +75,6 @@ autorelease pool 블록 내에서 생성한 객체들을 적절한 시점에 한
 - [Memory Management Policy](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmRules.html#//apple_ref/doc/uid/20000994-BAJHFBGH)
 - [Using Autorelease Pool Blocks](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html#//apple_ref/doc/uid/20000047-CJBFBEDI)
 - [NSAutoreleasePool](https://developer.apple.com/documentation/foundation/nsautoreleasepool)
+- [참고블로그](https://babbab2.tistory.com/75)
+- [참고깃헙](https://github.com/Tedigom/Swift/blob/master/additional_topics/autoreleasepool.md)
+- [stackoverflow](https://stackoverflow.com/questions/5711360/what-happens-when-the-following-code-executes-ball-ball-ball-alloc-init/5711473)   
