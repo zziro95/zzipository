@@ -166,6 +166,8 @@ loadPicture(from: someServer) { picture in
 ### Capturing Values
 글의 초반부에서 나왔던 클로저는 어떤 상수나 변수의 참조를 캡쳐해 저장할 수 있다는 값 획득에 대해서 살펴보겠습니다.   
 > The closure can then refer to and modify the values of those constants and variables from within its body, even if the original scope that defined the constants and variables no longer exists.   
+<br>
+
 "클로저는 상수와 변수를 정의한 original scope이 더 이상 존재하지 않더라도, 자신 내부에서 해당 상수 및 변수의 값을 참조하고 수정할 수 있다." 라고 한다.     
 `Capturing Values`의 핵심 문구라고 생각되는 위 문구가 확실히 이해가 가진 않지만 문서의 설명을 천천히 살펴보며 이해해 보자!    
 비동기 작업에서 이 개념이 중요하다고 하고, 중첩 함수가 Swift에서 값을 획득하는 가장 단순한 형태라고 한다.   
