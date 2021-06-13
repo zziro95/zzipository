@@ -10,7 +10,7 @@
 ### Function Types as Return Types
 함수 유형을 다른 함수의 `Return Type`으로 사용할 수 있다.   
 리턴 화살표 `->` 뒤에 함수 유형을 적어 주면 된다.   
-예제 코드와 함께 이해해보자.   
+예제 코드와 함께 이해해 보자.   
 ```swift
 // input 값에 +1을 더한 값, 1을 뺀 값을 리턴해주는 stepForward, stepBackward 함수가 있다. 
 
