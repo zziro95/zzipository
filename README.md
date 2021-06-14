@@ -8,6 +8,7 @@
     - 객체지향, 함수형, 프로토콜 지향 프로그래밍
     - Class Struct
     - Initialization
+    - Inheritance
     - [Type Safety and Type Inference](https://github.com/zziro95/zzipository/blob/main/Swift/Type%20Safety%20and%20Type%20Inference.md)
     - [Number](https://github.com/zziro95/zzipository/blob/main/Swift/Number.md)
     - [Functions](https://github.com/zziro95/zzipository/blob/main/Swift/Functions.md)
