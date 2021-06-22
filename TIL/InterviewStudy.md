@@ -121,7 +121,7 @@
     - 이 메서드를 호출하여 앱이 비활성 상태에서 활성 상태로 이동했음을 알린다.!  (**InActive** 상태에서 중지되었던 일들을 다시 시작한다.)
     - 출처 : [applicationDidBecomeActive(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive)   
 - `willResignActive`: 앱이 곧 **InActive** 상태가 될 것을 알림. App이 InActive 상태로 전환되기 직전에 호출 (interrupt 또는 앱을 종료하여 **Background**로 가기 전에 **InActive** 상태가 된다. )   
-- didEnterBackground: App이 **Background** 상태로 전환된 직후 호출, **Background** 상태가 되었음을 알리는 메서드.  
+- `didEnterBackground`: App이 **Background** 상태로 전환된 직후 호출, **Background** 상태가 되었음을 알리는 메서드.  
         - 이 메서드를 사용하여 공유 리소스를 해제, 타이머 무효화, 앱이 (Foreground 상태의 앱의 메모리 부족, 앱을 사용자가 종료)상황에 대비해 앱을 현재 상태로 복원하는데 충분한 상태 정보를 저장. (메모 작성 중이었다면 메모 저장 같은 작업을 여기서 한다.)   
  <br>
  <br>
@@ -133,9 +133,9 @@
 <br>
 <br>
 
-**새로 알게 된 내용** (applicationDidEnterBackground(_:) 문서 내용)
+**새로 알게 된 내용** ([applicationDidEnterBackground(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground) 문서 내용)
 - 포어그라운드에서 메일 전송 같은 작업을 실행시키고 바로 백그라운드로 왔을 때 **Background**에서 메일 전송과 같은 네트워크와 통신해야 하는 작업이 진행 중일 텐데 애플에서는 악성코드를 예방하기 위해서 5초의 시간만 준다고 한다.
-- 5초 안에 만약에 작업이 끝나지 않으면 (**1.** beginBackgroundTask(expirationHandler:)
+- 5초 안에 만약에 작업이 끝나지 않으면 (**1.** `beginBackgroundTask(expirationHandler:)`
 에서 추가시간을 요청하는 방법도 있다 하지만 시스템에서 추가시간을 요청받을 때 시간이 필요하기 때문에 최대한 빨리 요청해야 한다. ) **2.** 보내던 메일을 임시저장 한다든지, 파일 업로드에 실패했다는 얼럿을 띄운다는 것과 같은 마지막 하나의 함수를 호출하고 **Not Running** 상태로 돌아간다. (2번에 대한 공식 문서를 아직 못 찾음)   
 <br>
     
