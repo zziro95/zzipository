@@ -92,6 +92,7 @@
 - [ ]  앱이 In-Active 상태가 되는 시나리오를 설명하시오. (App LifeCycle)
 - [ ]  App의 Not running, Inactive, Active, Background, Suspended에 대해 설명하시오. (App LifeCycle)   
 
+---
 ### 7-2) **AppDelegate, SceneDelegate (iOS)**
 ⁉️ **메서드 호출 순서**   
 일반적인 사이클이라면 앱이 켜질 때 이런 순서로 메서드가 호출될 것 같다.   
@@ -126,19 +127,20 @@
  <br>
  <br>
  
- **파생된 질문**
+ 🐣 **파생된 질문**   
  - `willEnterForeground`의 메서드가 `willDidBecomeActive` 메서드에 대한 호출로 이어지기 때문에 `willEnterForeground`에서의 상태는 비활성 상태 라고 추측되는데 맞을까? (런치 스크린 뜨고 있을 때일까?)
  - 처음 앱을 켤 때 한정 지으면 `willEnterForeground`를 통해 **InActive** 상태로 들어가고 **Active** 상태가 되었을 때 `willDidBecomeActive`가 호출된다.
  - 따라서 `willEnterForeground`를 **InActive**라고 생각하는 게 아닌 **Active** 상태가 되기 위해 **InActive** 상태를 거치는 상태라고 보면 될 것 같다.   
 <br>
 <br>
 
-**새로 알게 된 내용** ([applicationDidEnterBackground(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground) 문서 내용)
+⭐ **새로 알게 된 내용**    ([applicationDidEnterBackground(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground) 문서 내용)
 - 포어그라운드에서 메일 전송 같은 작업을 실행시키고 바로 백그라운드로 왔을 때 **Background**에서 메일 전송과 같은 네트워크와 통신해야 하는 작업이 진행 중일 텐데 애플에서는 악성코드를 예방하기 위해서 5초의 시간만 준다고 한다.
 - 5초 안에 만약에 작업이 끝나지 않으면 (**1.** `beginBackgroundTask(expirationHandler:)`
 에서 추가시간을 요청하는 방법도 있다 하지만 시스템에서 추가시간을 요청받을 때 시간이 필요하기 때문에 최대한 빨리 요청해야 한다. ) **2.** 보내던 메일을 임시저장 한다든지, 파일 업로드에 실패했다는 얼럿을 띄운다는 것과 같은 마지막 하나의 함수를 호출하고 **Not Running** 상태로 돌아간다. (2번에 대한 공식 문서를 아직 못 찾음)   
 <br>
-    
+
+📝 **참고**   
 - [UIApplicationDelegate](https://developer.apple.com/documentation/uikit/uiapplicationdelegate)    
 - [applicationWillEnterForeground(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623076-applicationwillenterforeground)
 - [applicationDidBecomeActive(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622956-applicationdidbecomeactive)
@@ -170,16 +172,121 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 
 ---
 ### **7-3) Autolayout (iOS)**
+✅ **문제 & 답변**   
+#### Intrinsic Content Size에 대해서 설명하시오.
+ - 고유의 콘텐츠 크기를 뜻하며 `UISwitch`나 `UIButton`, `UILabel`, `UITextfield`) 처럼 자신의 content를 기반으로 뷰의 사이즈를 정할 수 있는 것. (`위치=좌표`는 지정해 줘야 한다.)    
+ - `UISwitch`처럼 아예 너비, 높이의 기본 사이즈가 정해져 있거나, UIButton의 TitleLabel을 통해 너비와 높이를 유추할 수 있다는 개념이다.     
+<br>
 
-- [ ]  오토레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
-- [ ]  hugging, resistance에 대해서 설명하시오.
-- [ ]  Intrinsic Size에 대해서 설명하시오.
-- [ ]  스토리보드를 이용했을때의 장단점을 설명하시오.
-- [ ]  Safearea에 대해서 설명하시오.
-- [ ]  Left Constraint 와 Leading Constraint 의 차이점을 설명하시오.
+#### hugging, resistance에 대해서 설명하시오.
+`Content Hugging`
+- `Intrinsic Content Size`에 맞게 줄어들려고 하는 힘
+- 늘어나지 않으려고 하는 힘
+- 컨텐츠보다 더 늘어나지 않으려고 하는 힘.   
+<br>
+
+`Compression-Resistance` 
+- 외부에서 뷰를 찍어누를 때 버티는 힘 (가로, 세로가 각각 있다.)
+- 줄어들지 않으려고 버티는 힘 (늘어나려고 하는 힘은 아님)
+- 자신의 컨텐츠를 지키려고 하는 힘    
+<br>
+
+**정리**
+- `CHCR`은 서로 반대되는 개념이 아닌 다른 관점에서의 개념이다. 
+- 둘의 기준이 되는 것은 `Intrinsic Content Size`
+- `Priority` 우선도를 통해 결정됨 (`Priority`가 같다면 충돌이 일어난다.)   
+<br>
+
+뷰에 `UI`들을 올려놓았을 때 수평이나 수직에 대해 늘어나지 않았으면 좋겠는 객체들에 대해서 `Content Hugging`의 `Priority`를 높여주고, 상황에 따라서 객체들의 사이즈가 달라질 때 화면에서 가장 사라지지 않았으면 하는 객체에 `Compression-Resistance`의 `Priority`를 높여주면 되겠다고 생각하였다.    
+<br>
+
+#### 오토 레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
+`Layout Anchors` ,`NSLayoutConstraint Class` ,`Visual Format Language`
+<br>
+
+`Layout Anchors`    
+- 읽기 쉽고 간결한 형식으로 제약 조건을 만들 수 있다.   
+- 주로 어떤 `객체`의 어느 `Anchor(Attribute)`에 어떤 `Constaint(Relationship, Multiplier, Constant)` 를 줄 것인지 지정해 주고 `isActive` 시켜준다.   
+- 💡 `Horizontal - 수평`에 대한 `Constraint`를 설정하는데 `Vertical - 수직`에 대한 `Constraint`를 설정해 주면 자동으로 컴파일 에러를 뱉어준다. (`Generic` 기능을 사용했기 때문 (제네릭과 에러를 뱉어주는 것과 무슨 연관이 있을까?)     
+- [[Generic Class] NSLayoutAnchor](https://developer.apple.com/documentation/appkit/nslayoutanchor)
+<br>
+
+`NSLayoutConstraint Class`   
+- `init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)`메서드를 사용하여 제약 조건을 만들 수 있는데 `Layout Anchors` 방식보다 가독성이 떨어진다.   
+- `NSLayoutAnchor`가 `iOS 9` 버전부터 지원되기 때문에 `NSLayoutAnchor`로 설정해 줄 수 없는 제약사항(한계점)을 설정해야 할 때나 `iOS 8` 이전 버전을 지원해야 하는 경우에 사용할 것 같다.   
+- 단점은 수평과 수직에 대한 잘못된 제약을 주었을 때 오류를 검출 안 해준다.   
+<br>
+
+`Visual Format Language`
+- 제약 조건을 시각적으로 표현한 언어
+<br>
+
+장점
+- `Auto Layout`은 `Visual Format Language`를 사용하여 콘솔에 메시지를 프린트한다.   
+    - 따라서 `Auto Layout`관련 오류가 났을 때 `Visual Format Language`를 알면 더 쉽게 문제 인식과 해결이 가능하다.   
+- `Visual Format Language`를 사용하면 매우 간단한 표현식을 사용하여 한 번에 여러 제약 조건을 만들 수 있다.
+- `Visual Format Language`를 사용하면 유효한 제약 조건(₩이게 정확히 무슨 말을 뜻하는 거지?`) 만 만들 수 있습니다.
+- [Visual Format Language](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html#//apple_ref/doc/uid/TP40010853-CH27-SW1) 잘 이해 안감 한번 살펴보고 글로 정리할 필요를 느낌   
+<br>
+
+#### 스토리보드를 이용했을 때의 장단점을 설명하시오.
+`장점`   
+- 앱의 흐름이 시각화되어 있기 때문에 보기 편하고 개발자가 아닌 디자이너와 같은 화면을 보며 쉽게 이야기가 가능하다.
+- 프리뷰 기능을 통해 빌드 하지 않고 화면 확인 가능하다.   
+<br>
+
+`단점`   
+- 스토리보드 파일의 포멧이 XML로 되어있어 읽기도 어렵고, 여러 명이 작업을 한다면 Merge Conflict 처리 비용이 크기 때문에 협업에서 사용하는데 어렵다. 
+- 스토리보드로 할 수 없는 작업(뷰 계층 구조에 대한 일부 동적 변경 사항)을 해줄 수 있다. (예시는?)   
+- 코드로 뷰를 만들면 재사용에 용이한데 스토리보드는 그렇지 않다.    
+<br>
+
+#### Safearea에 대해서 설명하시오.
+- `StatusBar`, `NavigationBar`, `ToolBar`, `TabBar`등 을 사용하면 화면의 특정 부분을 우선적으로 차지하게 되는데 그런 영역들을 제외한 컨텐츠가 안전하게 보일 수 있음을 보장하는 영역    
+<br>
+
+#### Left Constraint 와 Leading Constraint의 차이점을 설명하시오.
+- 대부분의 언어는 왼쪽에서 오른쪽으로 읽지만 대표적으로 아랍권은 오른쪽에서 왼쪽으로 읽는다.    
+    - `Leading and Trailing Constraint`은 국가의 레이아웃이 읽기 방향에 따라 조정되는 제약사항이다.   
+- `Left and Right Constraint`은 객체나 화면의 절대적인 방향 왼쪽, 오른쪽을 뜻한다.     
+<br>
+
+- 💡 `Auto Layout Guide`에 따르면 `Left and Right Constraint` 사용을 지양하고 `Leading and Trailing Constraint`을 사용할 것을 권장한다.    
+<br>
+<br>
+
+🐣 **파생된 질문**    
+#### `Layout Anchors`는 `Horizontal - 수평`에 대한 `Constraint`를 설정하는데 `Vertical - 수직`에 대한 `Constraint`를 설정해 주면 자동으로 컴파일 에러를 뱉어준다. 
+#### 이것이 `Generic` 기능을 사용했기 때문이라는데 `Generic`이 정확히 어떤 역할을 했기에 가능한 것일까??   
+- 답변: ?
+<br>
+
+#### `NSLayoutConstraint Class`로 설정해주어야 하는 `NSLayoutAnchor`로는 설정해 줄수 없는 제약사항(한계점)은 어떤 것들이 있을까??
+- 답변: ?
+<br>
+<br>
+
+⭐ **새로 알게된 내용**   
+#### `TextView`는 스크롤이 가능하냐 아니냐에 따라 `Intrinsic Content Size`를 가질 수도 있고 아닐 수도 있다.      
+- `TextView`의 스크롤 기능이 **꺼져**있다면 텍스트의 길이에 따라서 Intrinsic Content Size가 정해지고,   
+- `TextView`의 스크롤 기능이 **켜져**있다면 Intrinsic Content Size가 정해질 수 없다.   
+<br>
+
+#### Intrinsic Content Size 활용 방법
+`Storyboard` > `Size inspector` > `Instrinsic Size` > `Placeholder`를 이용하면 임시적인 높이와 너비 사이즈를 지정해 줄 수 있다.   
+스토리보드에서만 적용 가능하고 실제 실행 중에는 역할을 하지 않는다. (스토리보드에서 대략적으로 위치를 놓아볼 때 활용해보면 좋을듯하다.)   
+<br>
+
+`@IBDesignable`, Custom Class의 `intrinsicContentSize` 프로퍼티를 이용해 기본 너비, 높이 설정 가능. (`@IBDesignable`에 대해 나중에 글로 정리해 보기 아래 링크도 참고하기)     
+- [intrinsicContentSize 관련 참고해보면 좋을 글](https://ios-development.tistory.com/233)
+- [invalidateIntrinsicContentSize() 관련 글](https://magi82.github.io/ios-intrinsicContentSize/)
+<br>
+
+📝 **참고**   
+- [Auto Layout Guide (마지막 업데이트 날 짜 - 2016-03-21)](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html#//apple_ref/doc/uid/TP40010853-CH16-SW1)
+- [[야곰닷넷] 오토레이아웃 정복하기👍](https://yagom.net/courses/autolayout/)   
 
 ---
-
 ### **8-1) Design Pattern 1**
 
 - [ ]  Singleton 패턴을 활용하는 경우를 예를 들어 설명하시오. (Design Pattern)
