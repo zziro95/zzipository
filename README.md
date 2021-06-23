@@ -6,6 +6,7 @@
 ### Swift
 - Swift
     - 객체지향, 함수형, 프로토콜 지향 프로그래밍
+    - [Value types Reference types](https://github.com/zziro95/zzipository/blob/main/Swift/Value%20types%20Reference%20types.md)
     - Class Struct
     - Initialization
     - Inheritance
@@ -24,6 +25,7 @@
     - [UIKit Foundation](https://github.com/zziro95/zzipository/blob/main/iOS/UIKit%20Foundation.md)
     - [setUp tearDown](https://github.com/zziro95/zzipository/blob/main/iOS/setUp%20tearDown.md)
     - [TDD](https://github.com/zziro95/zzipository/blob/main/iOS/TDD.md)
+    - [AppDelegate SceneDelegate](https://github.com/zziro95/zzipository/blob/main/iOS/AppDelegate%20SceneDelegate.md)
     
 - Xcode
     - [iOS Deployment Target](https://github.com/zziro95/zzipository/blob/main/iOS/iOS%20Deployment%20Target.md)
