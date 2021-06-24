@@ -299,7 +299,7 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 <br>
 
 ---
-⭐ **새로 알게된 내용**   
+⭐ **새로 알게 된 내용**   
 #### ▶️ `TextView`는 스크롤이 가능하냐 아니냐에 따라 `Intrinsic Content Size`를 가질 수도 있고 아닐 수도 있다.      
 - `TextView`의 스크롤 기능이 **꺼져**있다면 텍스트의 길이에 따라서 `Intrinsic Content Size`가 정해지고, (다른 건 고려하지 않고 텍스트의 크기로만 결정된다.)   
 - `TextView`의 스크롤 기능이 **켜져**있다면 Intrinsic Content Size가 정해질 수 없다.   
@@ -326,21 +326,107 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 - [[야곰닷넷] 오토레이아웃 정복하기👍](https://yagom.net/courses/autolayout/)   
 
 ---
+---
 ### **8-1) Design Pattern 1**
+✅ **문제 & 답변**    
+#### ▶️ `Singleton Pattern` 을 활용하는 경우를 예를 들어 설명하시오. (Design Pattern)   
+`Singleton Pattern`   
+- 싱글턴 패턴은 타입을 인스턴스화 시키는 과정을 디자인한 패턴으로 공유하고 싶은 인스턴스를 유일하게 만들 수 있다.   
+- `Type Property`를 이용해서 인스턴스를 생성해 주고, `init mehtod`에 접근 제한자를 설정하여 타입 내부에서만 인스턴스화 할 수 있고, 외부에서는 접근할 수 없기 때문에 유일한 인스턴스가 된다.   
+- 특정 클래스의 인스턴스가 오직 하나임을 보장 (데이터 공유, 메모리 절약)
+<br>
 
-- [ ]  Singleton 패턴을 활용하는 경우를 예를 들어 설명하시오. (Design Pattern)
-- [ ]  KVO 동작 방식에 대해 설명하시오. (Design Pattern)
-- [ ]  NotificationCenter 동작 방식과 활용 방안에 대해 설명하시오. (NotificationCenter)
+`Singleton Pattern` 을 활용하는 경우   
+- 파일시스템, 데이터베이스, 코어데이터 등 디스크 저장소를 공유해서 사용하고 싶을 때 (ex. `FileManager`, `UserDefaults`)
+- 네트워크 요청을 그룹화하는 `URLSession`
+- 앱의 비동기 작업에 우선순위를 지정하고 순서를 지정, 예약하는 `OpertaionQueue`   
+- 현재 실행 중인 응용 프로그램에 대한 접근 `UIApplication`   
+<br>
 
+- 싱글턴을 사용하는 코드는 테스트하기 어렵거나 불가능하다. (이외 여러 단점이 있음)
+- 📮 그렇다면 올바른 해결 방법은? `dependency injection` 의존성 주입이라는데.. 프로토콜에 대해 정리 후 볼 필요가 있어 보인다. 
+- 아래 글에 **"싱글턴 패턴을 사용하지 말고 dependency injection을 사용하여 항상 문제를 해결할 수 있으며 해결해야 합니다."** 라는 의견도 있음.   
+[싱글턴 의존성 주입 관련 글](https://matteomanferdini.com/swift-singleton/)   
+<br>
+
+🐣 **파생된 질문**     
+#### ▶️ 타입 프로퍼티 `static`, `class`  키워드의 차이는?
+- 답변: 상속을 할 수 있느냐 없느냐 (상속과 관련) < 근거 문서와 좀 더 자세히 확실한 답변 알아보기
+
+<br>
+
+---
+#### ▶️ KVO 동작 방식에 대해 설명하시오. (Design Pattern)
+- `Key`를 가지고 `Key`에 해당하는 `Value`를 지켜본다
+- 특정 프로퍼티의 변화를 실시간으로 감지, 반응하기 위해 옵저빙을 하는 것이다. 
+- `addObserver`를 이용해 관찰할 수 있고 `forKeyPath`에는 지켜볼 프로퍼티를 넣어준다. 
+- 이전의 값을 지켜보려면 `old`, 변화된 값을 보고 싶으면 `new` 키워드를 사용하면 된다.   
+- 하나의 인스턴스의 프로퍼티를 여러 인스턴스에서 지켜볼 수 있다.    
+<br>
+
+🐣 **파생된 질문**     
+#### ▶️ `KVO`와 `NotificationCenter`의 공통점과 차이점은??
+**공통점**    
+- 인스턴스끼리 서로 알지 않아도 정보를 전달받을 수 있는 방법   
+<br>
+
+**차이점**     
+의존의 차이라고 말할 수 있을까??   
+- `KVO`는 `Key`를 통해서 지켜보겠다 등록을 하면 `Value`가 변했을 때 바로 파악할 수 있는데 
+- `NotificationCenter`는 옵저버로 등록을 해도 `NotificationCenter`에서 `post`를 해줘야만 전달받을 수 있다.   
+<br>
+
+---
+#### ▶️ `NotificationCenter` 동작 방식과 활용 방안에 대해 설명하시오. (NotificationCenter)
+**동작 방식**   
+- `NotificationCenter`의 `addObserver(_:selector:name:object:) or addObserver(forName:object:queue:using:)`메서드를 이용해서 옵저버로 등록하고, 알림을 받았을 때 실행할 클로저를 선언해 준다.   
+- 특정 이벤트 발생 시 `post`메서드를 통해 이벤트를 알린다.   
+- post를 통해 전달받으면 우리가 addObserver 메서드의 탈출 클로저에 선언한 작업이 진행된다.   
+<br>
+
+**활용방안**   
+- 인스턴스 간에 정보를 전달 받고 싶을 때 (구체적인 사례는 잘 생각 안 남)
+- ex. 데이터나 이벤트 전달 시 타입 간에 의존성을 줄일 때
+- ex. 대용량 파일을 다운로드하는 스레드를 생성하고 다른 페이지에서 다른 작업으로 넘어가도 다운로드 완료 알림 팝업을 띄우기 < [좋은 예 같아서 긁어옴...출처](https://www.notion.so/NotificationCenter-bcb6e10495fb42c1b2c51de6f6936995)
+- 객체의 상태가 변한 걸 알고 싶을 때? 그 변한 걸 가지고 작업(Alert을 띄우거나 데이터를 받아와서 처리하거나)을 해주고 싶을 때?
+<br>
+
+🐣 **파생된 질문**    
+#### ▶️ `removeObserver()`의 올바른 사용법??
+- 답변: 사용을 많이 못 해봐서 잘 모르겠다 ㅠㅠㅠ   
+<br>
+
+#### ▶️ `addObserver(_:selector:name:object:)`,  `addObserver(forName:object:queue:using:)` 차이??
+- 답변: `selector`는 `obj-c` 의 방식이기 때문에 `@objc` 어노테이션이 필요하고, 후자는 스위프트의 탈출 클로저를 이용하는 방식?   
+<br>
+
+⭐ **새로 알게 된 내용**   
+- `NotificationCenter` `post`시 등록된 `observer` 목록을 검색하므로 앱 속도가 느려질 수 있다고 한다.
+- 하나 이상의 `NotificationCenter`를 사용하면 `post` 마다 수행되는 작업이 줄어들어 (작업과 옵저버가 분산되므로?) 앱 전체의 성능이 향상된다.   
+[NotificationCenter.default](https://developer.apple.com/documentation/foundation/notificationcenter/1414169-default)   
+<br>
+
+---
+---
 ### **8-2) Design Pattern 2**
-
+✅ **문제 & 답변**   
+#### ▶️   
+🐣 **파생된 질문**    
+⭐ **새로 알게 된 내용**   
+📝 **참고**   
 - [ ]  Delegate란 무언인가 설명하고, retain 되는지 안되는지 그 이유를 함께 설명하시오. (Delegation)
+Delegation 패턴
+Protocol / Delegation 강의 42분
 - [ ]  Delegate 패턴을 활용하는 경우를 예를 들어 설명하시오. (Design Pattern)
 - [ ]  Delegates와 Notification 방식의 차이점에 대해 설명하시오. (Design Pattern)
 - [ ]  의존성 주입에 대하여 설명하시오. (Dependency Injection)
 
 ### **8-3) Architecture**
-
+✅ **문제 & 답변**   
+#### ▶️
+🐣 **파생된 질문**    
+⭐ **새로 알게 된 내용**   
+📝 **참고**   
 - [ ]  MVVM, MVC, Ribs, VIP 등 자신이 알고있는 아키텍쳐를 설명하시오. (Architecture)
 - [ ]  MVC 구조에 대해 블록 그림을 그리고, 각 역할과 흐름을 설명하시오.(Architecture)
 
