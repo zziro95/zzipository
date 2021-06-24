@@ -112,6 +112,7 @@
 <br>
 <br>
 
+---
 ✅ **문제 & 답변**   
 #### ▶️ 상태 변화에 따라 다른 동작을 처리하기 위한 AppDelegate 메서드들을 설명하시오. (AppDelegate)
 - iOS 버전에 따라 메서드들이 호출되는 곳의 차이는 있을 수 있다. (iOS 13 버전 미만은 AppDelegate, 이상은 SceneDelegate)
@@ -134,6 +135,7 @@
 <br>
 <br>
 
+---
 ⭐ **새로 알게 된 내용**    ([applicationDidEnterBackground(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground) 문서 내용)
 - 포어그라운드에서 메일 전송 같은 작업을 실행시키고 바로 백그라운드로 왔을 때 **Background**에서 메일 전송과 같은 네트워크와 통신해야 하는 작업이 진행 중일 텐데 애플에서는 악성코드를 예방하기 위해서 5초의 시간만 준다고 한다.
 - 5초 안에 만약에 작업이 끝나지 않으면 (**1.** `beginBackgroundTask(expirationHandler:)`
@@ -147,8 +149,8 @@
 - [applicationWillResignActive(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622950-applicationwillresignactive)
 - [applicationDidEnterBackground(_:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622997-applicationdidenterbackground)
 <br>
-<br>
 
+---
 #### ▶️ scene delegate에 대해 설명하시오. (SceneDelegate)
 **scene delegate**   
 - iPad에서 multi window를 지원하기 위해서 생겨난 개념으로 AppDelegate에서 관리하던 UI Lifecycle을 관리하는 책임을 가지고 있다.   
@@ -159,6 +161,7 @@
 - app의 UI를 나타내는 개체, scene 에는 ui 하나의 인스턴스를 나타내는 windows와 viewcontroller가 들어있다.
 <br>
 
+---
 ⁉️ **해결하지 못한 질문들**
 #### ▶️ 앱이 시작할 때 main.c 에 있는 UIApplicationMain 함수에 의해서 생성되는 객체는 무엇인가? (AppDelegate)
 - UIApplication 싱글턴 객체가 생성된다. 
@@ -171,6 +174,7 @@
 AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?   
 
 ---
+---
 ### **7-3) Autolayout (iOS)**
 ✅ **문제 & 답변**   
 #### ▶️ Intrinsic Content Size에 대해서 설명하시오.
@@ -178,6 +182,14 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
  - `UISwitch`처럼 아예 너비, 높이의 기본 사이즈가 정해져 있거나, UIButton의 TitleLabel을 통해 너비와 높이를 유추할 수 있다는 개념이다.     
 <br>
 
+🐣 **파생된 질문**    
+#### ▶️ 런타임 시 `Button`의 `TitleText`가 바뀌면 `Intrinsic Content Size` 가 자동으로 조절되는 걸까??
+- 해당 버튼에 `Top`, `Leading Constraint`만 설정되어 있다면 `TitleText`가 변경될 시 `Intrinsic Content Size`가 자동으로 바뀔 거 같고,   
+- `Top`, `Leading`, `Trailing`, `Bottom Constraint` (즉 너비, 높이) 모두 설정되어 있다면 `TitleText`가 변경되더라도 `Intrinsic Content Size`는 변하지 않을 것 같다.   
+정확하다기보다는 추측에 가깝고 공식 문서나 정확한 근거를 찾아보자.   
+<br>
+
+---
 #### ▶️ hugging, resistance에 대해서 설명하시오.
 `Content Hugging`
 - `Intrinsic Content Size`에 맞게 줄어들려고 하는 힘
@@ -200,6 +212,7 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 뷰에 `UI`들을 올려놓았을 때 수평이나 수직에 대해 늘어나지 않았으면 좋겠는 객체들에 대해서 `Content Hugging`의 `Priority`를 높여주고, 상황에 따라서 객체들의 사이즈가 달라질 때 화면에서 가장 사라지지 않았으면 하는 객체에 `Compression-Resistance`의 `Priority`를 높여주면 되겠다고 생각하였다.    
 <br>
 
+---
 #### ▶️ 오토 레이아웃을 코드로 작성하는 방법은 무엇인가? (3가지)
 `Layout Anchors` ,`NSLayoutConstraint Class` ,`Visual Format Language`
 <br>
@@ -229,6 +242,24 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 - [Visual Format Language](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/VisualFormatLanguage.html#//apple_ref/doc/uid/TP40010853-CH27-SW1) 잘 이해 안감 한번 살펴보고 글로 정리할 필요를 느낌   
 <br>
 
+🐣 **파생된 질문**    
+#### ▶️ `Layout Anchors`는 `Horizontal - 수평`에 대한 `Constraint`를 설정하는데 `Vertical - 수직`에 대한 `Constraint`를 설정해 주면 자동으로 컴파일 에러를 뱉어준다. 
+#### 이것이 `Generic` 기능을 사용했기 때문이라는데 `Generic`이 정확히 어떤 역할을 했기에 가능한 것일까??   
+<img src="https://github.com/zziro95/zzipository/blob/main/images/NSLayoutAnchor<AnchorType>.png" width="70%" height="70%" title="NSLayoutAnchor<AnchorType>" alt="NSLayoutAnchor<AnchorType>Img"></img>    
+
+- `Generic`로 만들어진 코드의 `T - Type Parameter`는 동일한 타입이어야 한다.    
+- 위의 `NSLayoutAnchor` 정의 코드를 보면 `<AnchorType>`에 수평이면 수평, 수직이면 수직 하나의 타입만 들어올 수 있고, 따라서 수평과 수직 타입이 같이 접근하게 되면 `T`가 동일하지 않기 때문에 올바른 제약이 아님을 확인하고 오류를 검출할 수 있다.       
+<br>
+<img src="https://github.com/zziro95/zzipository/blob/main/images/[Apple] NSLayoutAnchor.png" width="70%" height="70%" title="[Apple] NSLayoutAnchor" alt="[Apple] NSLayoutAnchorImg"></img>    
+
+- [NSLayoutAnchor 공식 문서](https://developer.apple.com/documentation/uikit/nslayoutanchor)를 보면 유효하지 않은 제약 조건이 생성될 수 있으나 이러한 제약 조건들은 런타임 시에 충돌을 일으킨다고 한다.   
+<br>
+
+#### ▶️ `NSLayoutConstraint Class`로 설정해주어야 하는 `NSLayoutAnchor`로는 설정해 줄수 없는 제약사항(한계점)은 어떤 것들이 있을까??
+- 답변: 아직 답을 찾지 못함.   
+<br>
+
+---
 #### ▶️ 스토리보드를 이용했을 때의 장단점을 설명하시오.
 `장점`   
 - 앱의 흐름이 시각화되어 있기 때문에 보기 편하고 개발자가 아닌 디자이너와 같은 화면을 보며 쉽게 이야기가 가능하다.
@@ -243,10 +274,11 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 <br>
 
 🐣 **파생된 질문**    
-코드나 스토리보드로 오토 레이아웃을 잡았는데 제대로 잡혔는지 어디 잘못 설정돼있는데 곳이 없는지 확인하는 방법을 알고 있나요?
+#### ▶️ 코드나 스토리보드로 오토 레이아웃을 잡았는데 제대로 잡혔는지 어디 잘못 설정돼있는데 곳이 없는지 확인하는 방법을 알고 있나요?
 - 런타임 시에 접근할 수 있는 `Debug View Hierarchy`에 접근해 보라색, 노란색, 빨간색 오류들이 있는지 없는지 확인해보기.   
 <br>
 
+---
 #### ▶️ Safearea에 대해서 설명하시오.
 - `StatusBar`, `NavigationBar`, `ToolBar`, `TabBar`등 을 사용하면 화면의 특정 부분을 우선적으로 차지하게 되는데 그런 영역들을 제외한 컨텐츠가 안전하게 보일 수 있음을 보장하는 영역   
 > 아이폰 10 이후로 등장한 개념!    
@@ -254,6 +286,7 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 > 나중에 좀 더 자세히 알아보자. [참고하면 좋을 블로그](https://babbab2.tistory.com/134).   
 <br>
 
+---
 #### ▶️ Left Constraint 와 Leading Constraint의 차이점을 설명하시오.
 - 대부분의 언어는 왼쪽에서 오른쪽으로 읽지만 대표적으로 아랍권은 오른쪽에서 왼쪽으로 읽는다.    
     - `Leading and Trailing Constraint`은 국가의 레이아웃이 읽기 방향에 따라 조정되는 제약사항이다.   
@@ -265,32 +298,7 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 <br>
 <br>
 
-🐣 **파생된 질문**    
-#### ▶️ `Layout Anchors`는 `Horizontal - 수평`에 대한 `Constraint`를 설정하는데 `Vertical - 수직`에 대한 `Constraint`를 설정해 주면 자동으로 컴파일 에러를 뱉어준다. 
-#### 이것이 `Generic` 기능을 사용했기 때문이라는데 `Generic`이 정확히 어떤 역할을 했기에 가능한 것일까??   
-<img src="https://github.com/zziro95/zzipository/blob/main/images/NSLayoutAnchor<AnchorType>.png" width="70%" height="70%" title="NSLayoutAnchor<AnchorType>" alt="NSLayoutAnchor<AnchorType>Img"></img>    
-<br>
-
-- `Generic`로 만들어진 코드의 `T - Type Parameter`는 동일한 타입이어야 한다.    
-- 위의 `NSLayoutAnchor` 정의 코드를 보면 `<AnchorType>`에 수평이면 수평, 수직이면 수직 하나의 타입만 들어올 수 있고, 따라서 수평과 수직 타입이 같이 접근하게 되면 `T`가 동일하지 않기 때문에 올바른 제약이 아님을 확인하고 오류를 검출할 수 있다.       
-<br>
-<img src="https://github.com/zziro95/zzipository/blob/main/images/[Apple] NSLayoutAnchor.png" width="70%" height="70%" title="[Apple] NSLayoutAnchor" alt="[Apple] NSLayoutAnchorImg"></img>    
-<br>
-
-- [NSLayoutAnchor 공식 문서](https://developer.apple.com/documentation/uikit/nslayoutanchor)를 보면 유효하지 않은 제약 조건이 생성될 수 있으나 이러한 제약 조건들은 런타임 시에 충돌을 일으킨다고 한다.   
-<br>
-
-#### ▶️ `NSLayoutConstraint Class`로 설정해주어야 하는 `NSLayoutAnchor`로는 설정해 줄수 없는 제약사항(한계점)은 어떤 것들이 있을까??
-- 답변: 아직 답을 찾지 못함.   
-<br>
-
-#### 런타임 시 `Button`의 `TitleText`가 바뀌면 `Intrinsic Content Size` 가 자동으로 조절되는 걸까??
-- 해당 버튼에 `Top`, `Leading Constraint`만 설정되어 있다면 `TitleText`가 변경될 시 `Intrinsic Content Size`가 자동으로 바뀔 거 같고,   
-- `Top`, `Leading`, `Trailing`, `Bottom Constraint` (즉 너비, 높이) 모두 설정되어 있다면 `TitleText`가 변경되더라도 `Intrinsic Content Size`는 변하지 않을 것 같다.   
-정확하다기보다는 추측에 가깝고 공식 문서나 정확한 근거를 찾아보자.   
-<br>
-<br>
-
+---
 ⭐ **새로 알게된 내용**   
 #### ▶️ `TextView`는 스크롤이 가능하냐 아니냐에 따라 `Intrinsic Content Size`를 가질 수도 있고 아닐 수도 있다.      
 - `TextView`의 스크롤 기능이 **꺼져**있다면 텍스트의 길이에 따라서 `Intrinsic Content Size`가 정해지고, (다른 건 고려하지 않고 텍스트의 크기로만 결정된다.)   
@@ -312,6 +320,7 @@ AppDelegate나, 그 안에 상태변화 메서드에 구현해야 할까?
 - [invalidateIntrinsicContentSize() 관련 글](https://magi82.github.io/ios-intrinsicContentSize/)
 <br>
 
+---
 📝 **참고**   
 - [Auto Layout Guide (마지막 업데이트 날 짜 - 2016-03-21)](https://developer.apple.com/library/archive/documentation/UserExperience/Conceptual/AutolayoutPG/ProgrammaticallyCreatingConstraints.html#//apple_ref/doc/uid/TP40010853-CH16-SW1)
 - [[야곰닷넷] 오토레이아웃 정복하기👍](https://yagom.net/courses/autolayout/)   
