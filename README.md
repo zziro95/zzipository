@@ -6,6 +6,7 @@
 ### Swift
 - Swift
     - 객체지향, 함수형, 프로토콜 지향 프로그래밍
+    - [Property](https://github.com/zziro95/zzipository/blob/main/Swift/Property.md)
     - [Value types Reference types](https://github.com/zziro95/zzipository/blob/main/Swift/Value%20types%20Reference%20types.md)
     - Class Struct
     - Initialization
