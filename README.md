@@ -16,6 +16,7 @@
     - [Functions](https://github.com/zziro95/zzipository/blob/main/Swift/Functions.md)
     - [Closure](https://github.com/zziro95/zzipository/blob/main/Swift/Closure.md)
     - [Generic](https://github.com/zziro95/zzipository/blob/main/Swift/Generic.md)
+    - [Result](https://github.com/zziro95/zzipository/blob/main/Swift/Result.md)
     - [MRC](https://github.com/zziro95/zzipository/blob/main/Swift/MRC.md)
     
 ---
