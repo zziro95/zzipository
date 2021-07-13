@@ -125,9 +125,9 @@
 - `willResignActive`: 앱이 곧 **InActive** 상태가 될 것을 알림. App이 InActive 상태로 전환되기 직전에 호출 (interrupt 또는 앱을 종료하여 **Background**로 가기 전에 **InActive** 상태가 된다. )   
 - `didEnterBackground`: App이 **Background** 상태로 전환된 직후 호출, **Background** 상태가 되었음을 알리는 메서드.  
         - 이 메서드를 사용하여 공유 리소스를 해제, 타이머 무효화, 앱이 (Foreground 상태의 앱의 메모리 부족, 앱을 사용자가 종료)상황에 대비해 앱을 현재 상태로 복원하는데 충분한 상태 정보를 저장. (메모 작성 중이었다면 메모 저장 같은 작업을 여기서 한다.)   
- <br>
- <br>
- 
+     <br>
+     <br>
+
  🐣 **파생된 질문**   
  #### ▶️ `willEnterForeground`의 메서드가 `willDidBecomeActive` 메서드에 대한 호출로 이어지기 때문에 `willEnterForeground`에서의 상태는 비활성 상태 라고 추측되는데 맞을까? (런치 스크린 뜨고 있을 때일까?)
  - 처음 앱을 켤 때 한정 지으면 `willEnterForeground`를 통해 **InActive** 상태로 들어가고 **Active** 상태가 되었을 때 `willDidBecomeActive`가 호출된다.
