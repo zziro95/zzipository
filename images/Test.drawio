@@ -1,1 +1,31 @@
-<mxfile host="app.diagrams.net" modified="2021-08-23T03:32:22.552Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="dq0M7zyhjlzxpf9P2Zhv" version="14.9.8" type="github"><diagram id="onRuLW0ohLeh3NF2064H" name="Page-1">5ZVNc9MwEIZ/jY6d8WciH+PElAMtMDmEG6NaiyVGtjKyXCf8euRY/nYH2gEunLx6d7XrfVYaIX+fX+4VObMHSUEgz6EX5B+Q57lehM2nUa6tsvWCVsgUpzZoEI78B1jRsWrFKZSTQC2l0Pw8FVNZFJDqiUaUkvU07JsU06pnksFCOKZELNUTp5q1Kva2g/4eeMa6yu4maj056YJtJyUjVNYjyU+Qv1dS6tbKL3sQDbyOS7vv3Qve/scUFPp3NsSk+vydnU73kNCv5KN+/OJ4dzbLMxGVbfiDzHhhJJQcUBShKEBJjHYRiu3cSn3t2ChZFRSa9A7y45pxDcczSRtvbU6D0ZjOhVm5xrSFQGm4vNiB23MxBwpkDlpdTYjd4G8sSnuWQrush8G4HW02Gkq3jdizkPWZB1zGsMReQc9b0EPJHkUhwsHNODTUDD4DseG4Q7GDsHODa7wJwrjx4t3UuxHmv+MnZaxM9+TG3JnMn6ry3zDfBhPmbrCEjleY47/FPFgyn/OBgu6aq29WhSxgjQnQxbX/JZFRx+FKx52mQBDNn6fp1zDYCp8kN4V74D256zrIUlYqBbtpfN1neeaXZZ5HE5WBXuS5zaRv+u1jCl81plSQsuTp/zmpeR43/FOjMsvhfWnDh1faT34C</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-08-23T03:33:39.817Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.159 Safari/537.36" etag="HPLkniACL-dUrS1N3OQw" version="14.9.8" type="github">
+  <diagram id="onRuLW0ohLeh3NF2064H" name="Page-1">
+    <mxGraphModel dx="1298" dy="724" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BauQjhWWGeEd_aOtNX02-1" value="Login 화면" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="360" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BauQjhWWGeEd_aOtNX02-2" value="아이디가 있는가&lt;br&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="374" y="140" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BauQjhWWGeEd_aOtNX02-4" value="" style="endArrow=none;html=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="80" as="sourcePoint" />
+            <mxPoint x="360" y="80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BauQjhWWGeEd_aOtNX02-5" value="" style="endArrow=classic;html=1;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="80" as="sourcePoint" />
+            <mxPoint x="280" y="150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XYBj2eBBg8R7cSNWZD6r-1" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="330" width="120" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
