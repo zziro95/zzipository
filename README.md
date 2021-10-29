@@ -13,6 +13,7 @@
     - Inheritance
     - [Type Safety and Type Inference](https://github.com/zziro95/zzipository/blob/main/Swift/Type%20Safety%20and%20Type%20Inference.md)
     - [Number](https://github.com/zziro95/zzipository/blob/main/Swift/Number.md)
+    - [String.SubSequence](https://github.com/zziro95/zzipository/blob/main/Swift/String.SubSequence.md)
     - [Functions](https://github.com/zziro95/zzipository/blob/main/Swift/Functions.md)
     - [Closure](https://github.com/zziro95/zzipository/blob/main/Swift/Closure.md)
     - [Generic](https://github.com/zziro95/zzipository/blob/main/Swift/Generic.md)
