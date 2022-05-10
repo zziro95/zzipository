@@ -1,8 +1,8 @@
 # ProgrammersLevel1
 ### 정리하면서 만드는 TO-DO List
-[]Swift의 Collection Type들을 다시 살펴보고 정리하기 ([참고하기](https://jusung.gitbook.io/the-swift-language-guide/language-guide/04-collection-types))   
-[]IteratorProtocol ([IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol))   
-[]Swift Sequence Collection ([참고하기](https://academy.realm.io/kr/posts/try-swift-soroush-khanlou-sequence-collection/))   
+- Swift의 Collection Type들을 다시 살펴보고 정리하기 ([참고하기](https://jusung.gitbook.io/the-swift-language-guide/language-guide/04-collection-types))   
+- IteratorProtocol ([IteratorProtocol](https://developer.apple.com/documentation/swift/iteratorprotocol))   
+- Swift Sequence Collection ([참고하기](https://academy.realm.io/kr/posts/try-swift-soroush-khanlou-sequence-collection/))   
 <br>
 
 ### x만큼 간격이 있는 n개의 숫자
@@ -43,7 +43,7 @@ private func printAsteriskSquare1() {
     }
 }
 ```   
-- 알게 된 내용
+- 알게 된 내용   
 `String` [init(repeating: count)](https://developer.apple.com/documentation/swift/string/2427723-init)   
 어려운 내용도 아니고 써봤던 이니셜라이저이지만 생각이 나지 않았으니 몰랐던걸로 하자   
 겸사 겸사 다른 타입의 비슷한 이니셜라이저를 찾아보자   
@@ -55,7 +55,7 @@ private func printAsteriskSquare1() {
 [Element](https://developer.apple.com/documentation/swift/sequence/2908099-element)는 `associatedtype`으로 `Element`는 플레이스홀더로 타입 정의시 구체적인 타입을 지정하면 되고, 문서를 보면 나와있겠지만 `where Self.Element == Self.Iterator.Element` 타입 제약이 걸려있다.   
 💡 **`Element`가 순회할수 있어야 한다는 제약인가 (확실하게 이해하지 못해 `IteratorProtocol`과 컬렉션 타입에 대한 공부가 필요해보인다!)**   
 
-- 다른 사람들의 풀이
+- 다른 사람들의 풀이   
 주로 중첩 포문에 `print("*", terminator: "")`를 많이 사용하였군   
 <br>
 
