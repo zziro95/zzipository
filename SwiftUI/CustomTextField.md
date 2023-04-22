@@ -5,8 +5,9 @@
 1. ViewModifier를 이용하는 형식
 2. TextFieldStyle를 채택하는 방식
 3. UIViewRepresentable를 이용한 UITextField 사용
-4. [SwiftUI-Introspect](https://github.com/siteline/SwiftUI-Introspect) 라이브러리 사용 
+4. [SwiftUI-Introspect](https://github.com/siteline/SwiftUI-Introspect) 라이브러리 사용   
 <br>
+
 ***
 
 ### ViewModifier를 이용하는 형식
@@ -64,7 +65,9 @@ public struct FSTextField: View {
   }
 }
 ```   
+
 <br>
+
 #### ViewModifier를 구현해주는 방식   
 같은 역할을 하지만 ViewModifier로 묵어서 적용해 주었다고 이해하면 좋을 것 같다.   
 이러한 형태는 같은 다른 건 다 같은데 backgroundColor만 다르게 표현해 준다던지 padding 값의 차이를 둔다던지 예외 케이스를 처리해 주기에 용이할 것 이다.   
@@ -103,6 +106,7 @@ struct SearchTextFieldModifier: ViewModifier {
 TextField("Search...", text: $text)
     .modifier(SearchTextFieldModifier())
 ```   
+
 <br>
 ***
 
@@ -159,6 +163,7 @@ public protocol TextFieldStyle {
   typealias _Label = _TextFieldStyleLabel
 }
 ```   
+
 <br>
 ***
 
