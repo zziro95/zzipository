@@ -40,10 +40,12 @@
 
 - WWDC
     - [[2019] Architecting Your App for Multiple](https://github.com/zziro95/zzipository/blob/main/iOS/ArchitectingYourAppforMultiple(App%26SceneDelegate).md)
-    
+    - [[2022] Explore navigation design for iOS]
 ---
 ### SwiftUI
+- [AsyncImage]
 - [CustomTextField](https://github.com/zziro95/zzipository/blob/main/SwiftUI/CustomTextField.md)
+- [UIViewRepresentable]
     
 ---
 ### Combine
